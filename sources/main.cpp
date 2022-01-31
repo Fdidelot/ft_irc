@@ -6,20 +6,27 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:53:47 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/01/27 16:51:21 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/01/31 20:22:21 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.hpp"
+#include "Server.hpp"
 
 int main(int ac, char **av)
 {
 	try
 	{
 		if (ac != 3)
-			throw badArgumentsCountException();
-		if (launchServer(av[1]) == FAILURE)
-			std::cout << "c'est pas bon" << std::endl;
+			throw Server::badArgumentsCountException();
+		//// C fonction
+		// if (launchServer(av[1]) == FAILURE)
+		// 	std::cout << "launchServer() failed." << std::endl;
+		/////
+
+		//// C++
+		Server ircServer;
+		ircServer.launchServer(av[1], av[2]);
+		/////
 	}
 	catch(const std::exception& e)
 	{
