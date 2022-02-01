@@ -6,7 +6,7 @@
 #    By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/01/31 18:59:16 by fdidelot         ###   ########.fr        #
+#    Updated: 2022/02/01 18:41:32 by fdidelot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ CXX = clang++
 ################## SOURCES ######################
 #-----------------------------------------------#
 SRCS =		main.cpp							\
-			Server.cpp
+			Server.cpp							\
+			Command.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -32,6 +33,7 @@ vpath %.cpp $(PATH_SRCS)
 ################## HEADERS ######################
 #-----------------------------------------------#
 HEADERS		=	Server.hpp						\
+				Command.hpp
 
 vpath %.hpp $(PATH_HEAD)
 

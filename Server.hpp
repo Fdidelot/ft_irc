@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/01/31 20:48:42 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/01 19:13:44 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,28 @@
 # include <cstring> // bzero
 # include <unistd.h> // close
 # include <stdio.h> // perror
+# include <sstream> // flefleche
 
 // getaddrinfo, bind, select, accept
-#include <stdlib.h>
-#include <string>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
+# include <stdlib.h>
+# include <string>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/socket.h>
+# include <netinet/in.h>
+# include <arpa/inet.h>
+# include <netdb.h>
 //
 
 # define SUCCESS 0
 # define FAILURE_GETADDRINFO 1
 # define FAILURE_BINDING 2
 # define FAILURE_LISTEN 3
+# define FAILURE_SELECT 4
 # define ERROR -1
 # define BACKLOG 10   // how many pending connections queue will hold
 
-//////////////////////////////// to remove
-int	launchServer(char* port);
-///////////////////////////////////////
+# include "Command.hpp"
 
 class Server {
 
@@ -58,9 +58,15 @@ class Server {
 		void	initAi(char* port);
 		void	bindToFirst(void);
 		void	tryListen(void);
+		void	runSelect(void);
+		void	newConnection(void);
+		void	endConnection(int currentSocket);
+		void*	getInAddr(struct sockaddr* sa);
+		void	fleflecheLoop(void);
+		void	execCommand(std::string commandName,
+					std::stringstream& completeCommand);
 
-		// fd_set&	getMasterFds(void);
-		// fd_set&	getReadFds(void);
+		void	sendToEveryone(int currentSocket); // ça va s'en aller ça, fin sans doute
 
 		class badArgumentsCountException : public std::exception {
 
@@ -75,21 +81,14 @@ class Server {
 
 	private:
 
-		fd_set					_masterFds;	// master file descriptor list
-		fd_set					_readFds;	// temporary file descriptor list for select()
-		struct addrinfo			_hints; 	// hint struct for getaddrinfo to set _ai
-		struct addrinfo			*_ai; 		// list of struct give by getaddrinfo use for binding
-		int						_listener;	// listening socket descriptor
-		// int						_fdmax;		// maximum file descriptor number
-		// int						_newfd;        // newly accept()ed socket descriptor
-		// struct sockaddr_storage	_remoteaddr; // client address
-		// socklen_t				_addrlen;
-		// char					_buf[256];    // buffer for client data
-		// int						_nbytes;
-		// char					_remoteIP[INET6_ADDRSTRLEN];
-		// int 					_yes=1;        // for setsockopt() SO_REUSEADDR, below
-		// int 					_i, _j;
-
+		fd_set			_masterFds;	// master file descriptor list
+		fd_set			_readFds;	// temporary file descriptor list for select(2)
+		struct addrinfo	_hints; 	// hint struct for getaddrinfo to set _ai
+		struct addrinfo	*_ai; 		// list of struct given by getaddrinfo use for binding
+		int				_listener;	// listening socket descriptor
+		int				_fdMax;		// maximum file descriptor number
+		int				_nbytes;	// number of bytes read
+		char			_buf[256];	// buffer for client data
 };
 
 #endif
