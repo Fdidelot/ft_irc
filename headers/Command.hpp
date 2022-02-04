@@ -31,7 +31,7 @@ class Command
 		void		_pass(std::stringstream& completeCommand);
 		void		_nick(std::stringstream& completeCommand);
 		void		_user(std::stringstream& completeCommand);
-
+		void		_cap(std::stringstream& completeCommand);
 };
 
 #endif

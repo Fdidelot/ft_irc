@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/01 19:15:39 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:25:55 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	Server::newConnection(void) {
 	newFd = accept(_listener, (struct sockaddr *)&remoteAddr, &addrLen);
 	if (newFd == -1)
 		perror("accept");
-	else 
+	else
 	{
 		FD_SET(newFd, &_masterFds); // add to master set
 		if (newFd > _fdMax)
@@ -184,8 +184,7 @@ void	Server::fleflecheLoop(void) {
 
 void	Server::launchServer(char* port, char* password) {
 
-	(void)password; // WARNING
-
+	_password = password;
 	initAi(port); // getaddrinfo
 	bindToFirst(); // bind to first opened socket
 	tryListen(); // try to listen on the opened port
@@ -203,6 +202,7 @@ void	Server::launchServer(char* port, char* password) {
 					newConnection();
 				else
 				{
+					bzero(&_buf, sizeof(_buf));
 					if ((_nbytes = recv(i, _buf, sizeof(_buf), 0)) < 1)
 						endConnection(i);
 					else

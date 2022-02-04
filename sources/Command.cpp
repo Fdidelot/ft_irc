@@ -39,6 +39,7 @@ void	Command::_pass(std::stringstream& completeCommand) {
 	(void)completeCommand;
 }
 
+
 void	Command::_nick(std::stringstream& completeCommand) {
 
 	std::cout << "exec nick" << std::endl;
@@ -51,20 +52,29 @@ void	Command::_user(std::stringstream& completeCommand) {
 	(void)completeCommand;
 }
 
+void	Command::_cap(std::stringstream& completeCommand) {
+
+	std::cout << "exec cap" << std::endl;
+	(void)completeCommand;
+}
+
 void	Command::launchCommand(std::stringstream& completeCommand) {
 
 	void	(Command::*command[NB_COMMAND])(std::stringstream&) = {
 		&Command::_pass,
 		&Command::_nick,
-		&Command::_user
+		&Command::_user,
+		&Command::_cap
 	};
 	std::string commandId[NB_COMMAND] = {
 		"PASS",
 		"NICK",
 		"USER",
-		"Unknown"
+		"CAP"
 	};
-	for (int i = 0; i < NB_COMMAND; i++)
+
+	int	i;
+	for (i = 0; i < NB_COMMAND; i++)
 	{
 		if (_type == commandId[i])
 		{
@@ -72,4 +82,6 @@ void	Command::launchCommand(std::stringstream& completeCommand) {
 			break;
 		}
 	}
+	if (i == NB_COMMAND)
+		std::cout << "Unknown command" << std::endl;
 }

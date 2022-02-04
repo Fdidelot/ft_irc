@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/01 19:13:44 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/04 15:38:29 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ class Server {
 		int				_listener;	// listening socket descriptor
 		int				_fdMax;		// maximum file descriptor number
 		int				_nbytes;	// number of bytes read
+		std::string		_password; 	// password defined by the server
 		char			_buf[256];	// buffer for client data
 };
 
