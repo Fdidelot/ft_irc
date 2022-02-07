@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Command.hpp                                       :+:      :+:    :+:   */
+/*   User.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COMMAND_HPP
-# define COMMAND_HPP
+#ifndef USER_HPP
+# define USER_HPP
 
-# include "User.hpp"
-# define NB_COMMAND 4
+# include <iostream>
 
-class User;
+# include "Server.hpp"
 
-class Command
+class User
 {
 	public:
 
-		Command(std::string commandName = "Unknown");
-		~Command(void);
+		User(void);
+		User(int fd);
+		~User(void);
 
-		void	launchCommand(std::stringstream& completeCommand, User& user);
+		void	addToBuf(char* buf);
+
+		bool		getCommandEnd(void) const;
+		int			getFd(void) const;
+		std::string	getCommandBuf(void) const;
+
+		void	setCommandEnd(bool b);
+		void	setNickname(std::string nickname);
+
+		void	handleCommand(char* buffer);
+		void	execCommand(std::string commandLine);
 
 	private:
 
-		std::string	_type;
-		void		_pass(std::stringstream& completeCommand, User& user);
-		void		_nick(std::stringstream& completeCommand, User& user);
-		void		_user(std::stringstream& completeCommand, User& user);
-		void		_cap(std::stringstream& completeCommand, User& user);
+		bool			_commandEnd; // true mean commandBuf is ready to be exec
+		std::string		_commandBuf; // store the command
+		int				_fd; // socket id link to this user
+		std::string		_nick; // nickname of the user
+	
 };
 
 #endif

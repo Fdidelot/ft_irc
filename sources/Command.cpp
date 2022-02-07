@@ -33,34 +33,36 @@ Command::~Command(void) {
 /************************************************************/
 /*					Members functions						*/
 /************************************************************/
-void	Command::_pass(std::stringstream& completeCommand) {
+void	Command::_pass(std::stringstream& completeCommand, User& user) {
 
+	(void)completeCommand; (void)user;
 	std::cout << "exec pass" << std::endl;
-	(void)completeCommand;
 }
 
 
-void	Command::_nick(std::stringstream& completeCommand) {
+void	Command::_nick(std::stringstream& completeCommand, User& user) {
 
-	std::cout << "exec nick" << std::endl;
-	(void)completeCommand;
+	std::string nickname;
+
+	completeCommand >> nickname;
+	user.setNickname(nickname);
 }
 
-void	Command::_user(std::stringstream& completeCommand) {
+void	Command::_user(std::stringstream& completeCommand, User& user) {
 
+	(void)completeCommand; (void)user;
 	std::cout << "exec user" << std::endl;
-	(void)completeCommand;
 }
 
-void	Command::_cap(std::stringstream& completeCommand) {
+void	Command::_cap(std::stringstream& completeCommand, User& user) {
 
-	std::cout << "exec cap" << std::endl;
-	(void)completeCommand;
+	(void)completeCommand;(void)user;
+	std::cout << "cap cmd" << std::endl;
 }
 
-void	Command::launchCommand(std::stringstream& completeCommand) {
+void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 
-	void	(Command::*command[NB_COMMAND])(std::stringstream&) = {
+	void	(Command::*command[NB_COMMAND])(std::stringstream&, User&) = {
 		&Command::_pass,
 		&Command::_nick,
 		&Command::_user,
@@ -78,7 +80,7 @@ void	Command::launchCommand(std::stringstream& completeCommand) {
 	{
 		if (_type == commandId[i])
 		{
-			(this->*command[i])(completeCommand);
+			(this->*command[i])(completeCommand, user);
 			break;
 		}
 	}

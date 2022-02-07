@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/04 16:25:55 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:36:32 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ Server::~Server(void) {
 /*					Getters/Setters							*/
 /************************************************************/
 /*						Getters								*/
+int	Server::getCurrentClient(void) const {
+
+	return (_currentClient);
+}
 
 /*						Setters								*/
 
@@ -122,6 +126,7 @@ void	Server::newConnection(void) {
 	else
 	{
 		FD_SET(newFd, &_masterFds); // add to master set
+		_users[newFd] = User(newFd);
 		if (newFd > _fdMax)
 			_fdMax = newFd;
 		std::cout	<< "ircserv: new connection from "
@@ -158,30 +163,6 @@ void	Server::sendToEveryone(int currentSocket) {
 	}
 }
 
-void	Server::execCommand(std::string commandName,
-					std::stringstream& completeCommand) {
-
-	Command currentCommand(commandName);
-
-	currentCommand.launchCommand(completeCommand);
-}
-
-void	Server::fleflecheLoop(void) {
-
-	std::string sBuf(_buf), parsedLine, tmp;
-	std::stringstream stream(sBuf), lineStream;
-
-	int i = 0;
-	while (std::getline(stream, parsedLine))
-	{
-		lineStream.str(parsedLine);
-		std::cout << "Line " << i++ << " : " <<  parsedLine << std::endl;
-		lineStream >> tmp;
-		execCommand(tmp, lineStream);
-		lineStream.clear();
-	}
-}
-
 void	Server::launchServer(char* port, char* password) {
 
 	_password = password;
@@ -194,22 +175,22 @@ void	Server::launchServer(char* port, char* password) {
 	{
 		_readFds = _masterFds; // copy the master to manipulate
 		runSelect(); // runs select(2)
-		for (int i = 0; i <= _fdMax; i++)
+		for (_currentClient = 0; _currentClient <= _fdMax; _currentClient++)
 		{
-			if (FD_ISSET(i, &_readFds))
+			if (FD_ISSET(_currentClient, &_readFds))
 			{
-				if (i == _listener)
+				if (_currentClient == _listener)
 					newConnection();
 				else
 				{
 					bzero(&_buf, sizeof(_buf));
-					if ((_nbytes = recv(i, _buf, sizeof(_buf), 0)) < 1)
-						endConnection(i);
+					_nbytes = recv(_currentClient, _buf, sizeof(_buf), 0);
+					if (_nbytes < 1)
+						endConnection(_currentClient);
 					else
 					{
-						std::cout << "Buf receive from " << i << ": " << _buf << std::endl;
-						fleflecheLoop();
-						sendToEveryone(i);
+						_users[_currentClient].handleCommand(_buf);
+						// sendToEveryone(_currentClient);
 					}
 				}
 			}

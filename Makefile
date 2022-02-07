@@ -6,7 +6,7 @@
 #    By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/04 18:44:50 by fdidelot         ###   ########.fr        #
+#    Updated: 2022/02/07 15:33:13 by fdidelot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ CXX = clang++
 ################### PATHS #######################
 #-----------------------------------------------#
 PATH_HEAD	=	./headers/
-# PATH_HEAD	=	./
 PATH_SRCS	=	./sources/
 PATH_OBJS	=	./objects/
 
@@ -33,7 +32,8 @@ PATH_OBJS	=	./objects/
 #-----------------------------------------------#
 SRCS =		main.cpp							\
 			Server.cpp							\
-			Command.cpp
+			Command.cpp							\
+			User.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -41,7 +41,8 @@ vpath %.cpp $(PATH_SRCS)
 ################## HEADERS ######################
 #-----------------------------------------------#
 HEADERS		=	Server.hpp						\
-				Command.hpp
+				Command.hpp						\
+				User.hpp
 
 vpath %.hpp $(PATH_HEAD)
 
@@ -49,6 +50,7 @@ vpath %.hpp $(PATH_HEAD)
 ################## OBJECTS ######################
 #-----------------------------------------------#
 OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.cpp=.o))
+
 
 #-----------------------------------------------#
 ################### FLAGS #######################
