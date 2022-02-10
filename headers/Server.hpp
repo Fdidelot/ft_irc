@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/07 17:38:22 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:00:05 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,13 @@
 # include <netdb.h>
 //
 
+# define SERV_NAME "Cthulhu"
+# define SERV_VERSION "0.1"
+# define CREATION_DATE "Today"
+
 # define SUCCESS 0
+# define SUCCESS_ADD 1
+# define FAILURE_ADD 0
 # define FAILURE_GETADDRINFO 1
 # define FAILURE_BINDING 2
 # define FAILURE_LISTEN 3
