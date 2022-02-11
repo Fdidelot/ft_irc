@@ -41,9 +41,12 @@ void	Command::sendCommand(User& user, int msgId) const {
 	std::string servName = static_cast<std::string>(SERV_NAME);
 	std::string servCreation = static_cast<std::string>(CREATION_DATE);
 
-	numberStream << std::setw(3) << std::setfill('0') << msgId;
 	int fd = user.getFd();
-	toSend += RPL_MESSAGE(servName, numberStream.str(), user.getNick());
+	if (msgId != PONG)
+	{
+		numberStream << std::setw(3) << std::setfill('0') << msgId;
+		toSend += RPL_MESSAGE(servName, numberStream.str(), user.getNick());
+	}
 	switch (msgId)
 	{
 		case 1:
@@ -58,8 +61,12 @@ void	Command::sendCommand(User& user, int msgId) const {
 		case 4:
 			toSend += RPL_MYINFO(servName, SERV_VERSION);
 			break;
-		case 221:
-			toSend += user.getCurrentWord();
+		case MODE:
+			toSend += "+" + user.getModes();
+			break;
+		case PONG:
+			toSend += PONG_MSG(servName);
+			break;
 	}
 	toSend += "\r\n";
 	send(fd, toSend.c_str(), toSend.size(), SEND_OPT);
@@ -99,25 +106,28 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 void	Command::_cap(std::stringstream& completeCommand, User& user) {
 
 	(void)completeCommand;(void)user;
-	std::cout << "cap cmd" << std::endl;
 }
 
 void	Command::_mode(std::stringstream& completeCommand, User& user) {
 
-	std::string word;
-
-	completeCommand >> word;
-	completeCommand >> word;
-	user.setCurrentWord(word);
-	user.setMode((*word.c_str() == '+' ? true : false), *(word.c_str() + 1));
-	sendCommand(user, 221);
-	std::cout << "mode cmd" << std::endl;
+	std::string	word;
+	int			i = 0;
+	while (completeCommand >> word)
+		i++;
+	user.setMode((*word.c_str() == '-' ? false : true), word.c_str());
+	sendCommand(user, MODE);
 }
 
 void	Command::_join(std::stringstream& completeCommand, User& user) {
 
-	user.getServer();
 	(void)completeCommand;
+	user.getServer();
+}
+
+void	Command::_ping(std::stringstream& completeCommand, User& user) {
+
+	(void)completeCommand;
+	sendCommand(user, PONG);
 }
 
 void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
@@ -128,7 +138,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_user,
 		&Command::_cap,
 		&Command::_mode,
-		&Command::_join
+		&Command::_join,
+		&Command::_ping
 	};
 	std::string commandId[NB_COMMAND] = {
 		"PASS",
@@ -136,7 +147,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"USER",
 		"CAP",
 		"MODE",
-		"JOIN"
+		"JOIN",
+		"PING"
 	};
 
 	int	i;

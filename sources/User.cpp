@@ -109,9 +109,25 @@ bool	User::getMode(char m) const {
 	return (false);
 }
 
-std::string	User::getCurrentWord(void) const {
+std::string	User::getModes(void) const {
 
-	return (_currentWord);
+	std::string modes = "";
+
+	if (getMode('a'))
+		modes += 'a';
+	if (getMode('i'))
+		modes += 'i';
+	if (getMode('w'))
+		modes += 'w';
+	if (getMode('r'))
+		modes += 'r';
+	if (getMode('o'))
+		modes += 'o';
+	if (getMode('O'))
+		modes += 'O';
+	if (getMode('s'))
+		modes += 's';
+	return (modes);
 }
 
 Server& User::getServer(void) const {
@@ -135,48 +151,46 @@ void	User::setUserOrNickCmd(bool b) {
 	_userOrNickCmd = b;
 }
 
-void	User::setMode(bool onOff, char m) {
+void	User::setMode(bool onOff, const char* modes) {
 
-	switch (m)
+	while (*modes != '\0')
 	{
-		case 'a':
-			_mode.a = onOff;
-			break;
-		case 'i':
-			_mode.i = onOff;
-			break;
-		case 'w':
-			_mode.w = onOff;
-			break;
-		case 'r':
-			_mode.r = onOff;
-			break;
-		case 'o':
-			_mode.o = onOff;
-			break;
-		case 'O':
-			_mode.O = onOff;
-			break;
-		case 's':
-			_mode.s = onOff;
-			break;
+		switch (*modes)
+		{
+			case 'a':
+				_mode.a = onOff;
+				break;
+			case 'i':
+				_mode.i = onOff;
+				break;
+			case 'w':
+				_mode.w = onOff;
+				break;
+			case 'r':
+				_mode.r = onOff;
+				break;
+			case 'o':
+				_mode.o = onOff;
+				break;
+			case 'O':
+				_mode.O = onOff;
+				break;
+			case 's':
+				_mode.s = onOff;
+				break;
+		}
+		modes++;
 	}
-}
-
-void	User::setCurrentWord(std::string word) {
-
-	_currentWord = word;
 }
 
 /************************************************************/
 /*					Member functions						*/
 /************************************************************/
-bool	User::addToBuf(char* buf) {
+bool	User::addToBuf(void) {
 
 	size_t	endLine;
 
 
-	(void)buf;
 	endLine = _totalBuf.find("\r\n", 0);
 	if ((endLine != std::string::npos))
 	{
@@ -205,13 +219,10 @@ void	User::execCommand(std::string commandLine) {
 void	User::handleCommand(char* buffer) {
 
 	std::string tmp = buffer;
-	std::cout << "Buf receives" << ": " << buffer << std::endl;
-	int po = *tmp.c_str();
-	std::cout << "Buf tmp" << ": " << po << std::endl;
 
 	if (!(tmp.size() == 1 && *tmp.c_str() == EOT_CODE)) // In case of multiple ctrl+D
 		_totalBuf += buffer;
-	while (addToBuf(buffer))
+	while (addToBuf())
 	{
 		if (getCommandEnd())
 		{

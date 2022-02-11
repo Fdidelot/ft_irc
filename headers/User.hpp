@@ -40,7 +40,7 @@ class User
 		User(int fd, Server* server);
 		~User(void);
 
-		bool	addToBuf(char* buf);
+		bool	addToBuf(void);
 
 		bool		getCommandEnd(void) const;
 		int			getFd(void) const;
@@ -48,14 +48,14 @@ class User
 		std::string	getCommandBuf(void) const;
 		bool		getUserOrNickCmd(void) const;
 		bool		getMode(char m) const;
-		std::string	getCurrentWord(void) const;
+		std::string	getModes(void) const;
+
 		Server&		getServer(void) const;
 
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
 		void	setUserOrNickCmd(bool b);
-		void	setMode(bool onOff, char m);
-		void	setCurrentWord(std::string word);
+		void	setMode(bool onOff, const char* modes);
 
 		void	handleCommand(char* buffer);
 		void	execCommand(std::string commandLine);
@@ -69,7 +69,6 @@ class User
 		int				_fd; // socket id link to this user
 		std::string		_nick; // nickname of the user
 		t_mode			_mode; // user actual mode
-		std::string		_currentWord;
 		Server*			_server;
 
 };
