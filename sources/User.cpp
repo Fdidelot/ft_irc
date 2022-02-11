@@ -16,10 +16,14 @@
 /*					Constructor/Destructor					*/
 /************************************************************/
 User::User(void) :	_userOrNickCmd(false),
-					 _commandEnd(false), _commandBuf(""),
-					_fd(-1), _nick(DEFAULT_NICKNAME) {
+					_commandEnd(false),
+					_commandBuf(""),
+					_fd(-1),
+					_nick(DEFAULT_NICKNAME),
+					_server(NULL) {
+
 	_mode.a = false;
-	_mode.i = false; 
+	_mode.i = false;
 	_mode.w = false;
 	_mode.r = false;
 	_mode.o = false;
@@ -28,8 +32,20 @@ User::User(void) :	_userOrNickCmd(false),
 	return ;
 }
 
-User::User(int fd) : _commandEnd(false), _commandBuf(""), _fd(fd) {
+User::User(int fd, Server* server) :	_userOrNickCmd(false),
+										_commandEnd(false),
+										_commandBuf(""),
+										_fd(fd),
+										_nick(DEFAULT_NICKNAME),
+										_server(server) {
 
+	_mode.a = false;
+	_mode.i = false;
+	_mode.w = false;
+	_mode.r = false;
+	_mode.o = false;
+	_mode.O = false;
+	_mode.s = false;
 	return ;
 }
 
@@ -98,6 +114,11 @@ std::string	User::getCurrentWord(void) const {
 	return (_currentWord);
 }
 
+Server& User::getServer(void) const {
+
+	return (*_server);
+}
+
 /*						Setters								*/
 void	User::setCommandEnd(bool b) {
 
@@ -153,7 +174,7 @@ void	User::setCurrentWord(std::string word) {
 bool	User::addToBuf(char* buf) {
 
 	size_t	endLine;
-	
+
 
 	(void)buf;
 	endLine = _totalBuf.find("\r\n", 0);

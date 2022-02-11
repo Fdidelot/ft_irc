@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/10 15:00:05 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:28:51 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@
 
 # include "Command.hpp"
 # include "User.hpp"
+# include "Channel.hpp"
 
 class User;
+class Channel;
 
 class Server {
 
@@ -91,17 +93,18 @@ class Server {
 
 	private:
 
-		fd_set				_masterFds;		// master file descriptor list
-		fd_set				_readFds;		// temporary file descriptor list for select(2)
-		struct addrinfo		_hints; 		// hint struct for getaddrinfo to set _ai
-		struct addrinfo		*_ai; 			// list of struct given by getaddrinfo use for binding
-		int					_listener;		// listening socket descriptor
-		int					_fdMax;			// maximum file descriptor number
-		int					_nbytes;		// number of bytes read
-		std::string			_password; 		// password defined by the server
-		char				_buf[256];		// buffer for client data
-		int					_currentClient; // store the current client fd
-		std::map<int, User>	_users; 		// list of users
+		fd_set							_masterFds;			// master file descriptor list
+		fd_set							_readFds;			// temporary file descriptor list for select(2)
+		struct addrinfo					_hints; 			// hint struct for getaddrinfo to set _ai
+		struct addrinfo					*_ai; 				// list of struct given by getaddrinfo use for binding
+		int								_listener;			// listening socket descriptor
+		int								_fdMax;				// maximum file descriptor number
+		int								_nbytes;			// number of bytes read
+		std::string						_password; 			// password defined by the server
+		char							_buf[256];			// buffer for client data
+		int								_currentClient; 	// store the current client fd
+		std::map<int, User>				_users; 			// list of users associate with fd
+		std::map<std::string, Channel>	_channels;			// list of channels associate with names
 };
 
 #endif

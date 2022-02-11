@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:05:02 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/08 15:35:11 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:21:51 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "User.hpp"
 # include <list>
 
+class User;
+
 class Channel
 {
 	public:
@@ -23,8 +25,8 @@ class Channel
 		~Channel();
 	private:
 		std::string _name;
-		std::list<User> _users;
-		std::list<User> _opers;
+		std::list<User *> _users;
+		std::list<User *> _opers;
 };
 
 #endif

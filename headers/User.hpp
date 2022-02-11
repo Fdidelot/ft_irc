@@ -19,6 +19,8 @@
 
 # define DEFAULT_NICKNAME " * "
 
+class Server;
+
 typedef struct s_mode
 {
 	bool	a;
@@ -35,7 +37,7 @@ class User
 	public:
 
 		User(void);
-		User(int fd);
+		User(int fd, Server* server);
 		~User(void);
 
 		bool	addToBuf(char* buf);
@@ -47,6 +49,7 @@ class User
 		bool		getUserOrNickCmd(void) const;
 		bool		getMode(char m) const;
 		std::string	getCurrentWord(void) const;
+		Server&		getServer(void) const;
 
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
@@ -67,7 +70,8 @@ class User
 		std::string		_nick; // nickname of the user
 		t_mode			_mode; // user actual mode
 		std::string		_currentWord;
-	
+		Server*			_server;
+
 };
 
 #endif

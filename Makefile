@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+         #
+#    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/07 15:33:13 by fdidelot         ###   ########.fr        #
+#    Updated: 2022/02/11 17:28:28 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ PATH_OBJS	=	./objects/
 SRCS =		main.cpp							\
 			Server.cpp							\
 			Command.cpp							\
-			User.cpp
+			User.cpp							\
+			Channel.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -42,7 +43,8 @@ vpath %.cpp $(PATH_SRCS)
 #-----------------------------------------------#
 HEADERS		=	Server.hpp						\
 				Command.hpp						\
-				User.hpp
+				User.hpp						\
+				Channel.hpp
 
 vpath %.hpp $(PATH_HEAD)
 

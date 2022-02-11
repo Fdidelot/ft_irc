@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/07 17:36:32 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/11 17:24:01 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	Server::initAi(char* port) {
 	{
 		std::cerr << "ircserv: " << gai_strerror(retGetAddrinfo) << std::endl;
 		exit (FAILURE_GETADDRINFO);
-	}	
+	}
 }
 
 void	Server::bindToFirst(void) {
@@ -126,7 +126,7 @@ void	Server::newConnection(void) {
 	else
 	{
 		FD_SET(newFd, &_masterFds); // add to master set
-		_users[newFd] = User(newFd);
+		_users[newFd] = User(newFd, this);
 		if (newFd > _fdMax)
 			_fdMax = newFd;
 		std::cout	<< "ircserv: new connection from "

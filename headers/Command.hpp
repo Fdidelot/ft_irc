@@ -14,12 +14,13 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 5
+# define NB_COMMAND 6
 # define EOT_CODE 4
 # define SEND_OPT 0
 
+# define RPL_MESSAGE(servName, number, nick) (":" + servName + " " + number + " " + nick + " ")
 # define RPL_WELCOME(nick) (":Welcome to the Internet Relay Network " + nick)
-# define RPL_YOURHOST(servName, servVersion) (":Your host is " + servName + ", running version " + servVersion) 
+# define RPL_YOURHOST(servName, servVersion) (":Your host is " + servName + ", running version " + servVersion)
 # define RPL_CREATED(date) (":This server was created " + date)
 # define RPL_MYINFO(servName, servVersion) (":" + servName + " " + servVersion + " user_mode, channel modes")
 
@@ -49,6 +50,7 @@ class Command
 		void		_user(std::stringstream& completeCommand, User& user);
 		void		_cap(std::stringstream& completeCommand, User& user);
 		void		_mode(std::stringstream& completeCommand, User& user);
+		void		_join(std::stringstream& completeCommand, User& user);
 };
 
 #endif
