@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/11 17:24:01 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/14 15:20:40 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,11 @@ void	Server::tryListen(void) {
 
 void	Server::runSelect(void) {
 
-	if (select(_fdMax + 1, &_readFds, NULL, NULL, NULL) == -1) {
+	struct timeval timeout;
+
+	timeout.tv_sec = 1;
+	timeout.tv_usec = 0;
+	if (select(_fdMax + 1, &_readFds, NULL, NULL, &timeout) == -1) {
 		perror("select");
 		exit(FAILURE_SELECT);
 	}

@@ -34,6 +34,17 @@ Command::~Command(void) {
 /************************************************************/
 /*					Members functions						*/
 /************************************************************/
+std::string	Command::errMode(User& user) const {
+
+	std::string toReturn;
+	std::string charS(1, user.getErrModeChar());
+
+	toReturn += ERR_UNKNOWNMODE(charS);
+	// if (isInChannel(user))
+	// 	add ERR_UNKNOWNMODE_END;
+	return (toReturn);
+}
+
 void	Command::sendCommand(User& user, int msgId) const {
 
 	std::stringstream numberStream;
@@ -66,6 +77,9 @@ void	Command::sendCommand(User& user, int msgId) const {
 			break;
 		case PONG:
 			toSend += PONG_MSG(servName);
+			break;
+		case UNKNOWN_MODE:
+			toSend += errMode(user);
 			break;
 	}
 	toSend += "\r\n";

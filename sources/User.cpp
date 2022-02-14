@@ -20,7 +20,8 @@ User::User(void) :	_userOrNickCmd(false),
 					_commandBuf(""),
 					_fd(-1),
 					_nick(DEFAULT_NICKNAME),
-					_server(NULL) {
+					_server(NULL),
+					_errModeChar('i') {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -37,7 +38,8 @@ User::User(int fd, Server* server) :	_userOrNickCmd(false),
 										_commandBuf(""),
 										_fd(fd),
 										_nick(DEFAULT_NICKNAME),
-										_server(server) {
+										_server(server),
+										_errModeChar('i') {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -135,6 +137,11 @@ Server& User::getServer(void) const {
 	return (*_server);
 }
 
+char	User::getErrModeChar(void) const {
+
+	return (_errModeChar);
+}
+
 /*						Setters								*/
 void	User::setCommandEnd(bool b) {
 
@@ -151,10 +158,30 @@ void	User::setUserOrNickCmd(bool b) {
 	_userOrNickCmd = b;
 }
 
+void	User::setErrModeChar(char c) {
+
+	_errModeChar = c;
+}
+
 void	User::setMode(bool onOff, const char* modes) {
+
+	Command errCommand("errCommand");
 
 	while (*modes != '\0')
 	{
+		if (*modes != 'a' &&
+			*modes != 'i' &&
+			*modes != 'w' &&
+			*modes != 'r' &&
+			*modes != 'o' &&
+			*modes != 'O' &&
+			*modes != '+' &&
+			*modes != '-' &&
+			*modes != 's' )
+		{
+			setErrModeChar(*modes);
+			errCommand.sendCommand(*this, UNKNOWN_MODE);
+		}
 		switch (*modes)
 		{
 			case 'a':

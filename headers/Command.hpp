@@ -18,8 +18,9 @@
 # define EOT_CODE 4
 # define SEND_OPT 0
 
-# define PONG -1
-# define MODE 221
+# define PONG			-1
+# define MODE			221
+# define UNKNOWN_MODE	472
 
 # define RPL_MESSAGE(servName, number, nick) (":" + servName + " " + number + " " + nick + " ")
 # define RPL_WELCOME(nick) (":Welcome to the Internet Relay Network " + nick)
@@ -27,6 +28,8 @@
 # define RPL_CREATED(date) (":This server was created " + date)
 # define RPL_MYINFO(servName, servVersion) (":" + servName + " " + servVersion + " user_mode, channel modes")
 # define PONG_MSG(servName) (":" + servName + " PONG " + servName + " :" + servName)
+
+# define ERR_UNKNOWNMODE(character) (character + " :is unknown mode char to me")
 
 // enum e
 // {
@@ -45,6 +48,8 @@ class Command
 		void	launchCommand(std::stringstream& completeCommand, User& user);
 		void	sendCommand(User& user, int msgId) const;
 		void	sendStartMsgs(User& user) const;
+
+		std::string	errMode(User& user) const;
 
 	private:
 

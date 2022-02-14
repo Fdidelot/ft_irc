@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/11 17:28:51 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/14 12:29:59 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h> // perror
 # include <sstream> // flefleche
 # include <map> // map
+# include <ctime> // time()
 
 // getaddrinfo, bind, select, accept
 # include <stdlib.h>
