@@ -92,58 +92,6 @@ void	Command::sendStartMsgs(User& user) const {
 		sendCommand(user, i);
 }
 
-void	Command::_pass(std::stringstream& completeCommand, User& user) {
-
-	(void)completeCommand; (void)user;
-	std::cout << "exec pass" << std::endl;
-}
-
-void	Command::_nick(std::stringstream& completeCommand, User& user) {
-
-	std::string nickname;
-
-	completeCommand >> nickname;
-	user.setNickname(nickname);
-	if (user.getUserOrNickCmd())
-		sendStartMsgs(user);
-	user.setUserOrNickCmd(true);
-}
-
-void	Command::_user(std::stringstream& completeCommand, User& user) {
-
-	(void)completeCommand; (void)user;
-	if (user.getUserOrNickCmd())
-		sendStartMsgs(user);
-	user.setUserOrNickCmd(true);
-}
-
-void	Command::_cap(std::stringstream& completeCommand, User& user) {
-
-	(void)completeCommand;(void)user;
-}
-
-void	Command::_mode(std::stringstream& completeCommand, User& user) {
-
-	std::string	word;
-	int			i = 0;
-	while (completeCommand >> word)
-		i++;
-	user.setMode((*word.c_str() == '-' ? false : true), word.c_str());
-	sendCommand(user, MODE);
-}
-
-void	Command::_join(std::stringstream& completeCommand, User& user) {
-
-	(void)completeCommand;
-	user.getServer();
-}
-
-void	Command::_ping(std::stringstream& completeCommand, User& user) {
-
-	(void)completeCommand;
-	sendCommand(user, PONG);
-}
-
 void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 
 	void	(Command::*command[NB_COMMAND])(std::stringstream&, User&) = {

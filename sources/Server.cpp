@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/14 15:20:40 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/15 17:40:55 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@ Server::~Server(void) {
 int	Server::getCurrentClient(void) const {
 
 	return (_currentClient);
+}
+
+User*	Server::getUser(std::string name)
+{
+	std::map<int, User>::iterator it = _users.begin();
+	std::map<int, User>::iterator ite = _users.end();
+
+	for (; it->first != ite->first; it++)
+	{
+		if (it->second.getNick() == name)
+			return (&it->second);
+	}
+	return (NULL);
 }
 
 /*						Setters								*/
@@ -193,6 +206,7 @@ void	Server::launchServer(char* port, char* password) {
 						endConnection(_currentClient);
 					else
 					{
+
 						_users[_currentClient].handleCommand(_buf);
 						// sendToEveryone(_currentClient);
 					}

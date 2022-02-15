@@ -6,7 +6,7 @@
 #    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/11 17:28:28 by psemsari         ###   ########.fr        #
+#    Updated: 2022/02/15 17:39:07 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,15 @@ SRCS =		main.cpp							\
 			Server.cpp							\
 			Command.cpp							\
 			User.cpp							\
-			Channel.cpp
+			Channel.cpp							\
+			cmdPass.cpp							\
+			cmdNick.cpp							\
+			cmdCap.cpp							\
+			cmdMode.cpp							\
+			cmdJoin.cpp							\
+			cmdPing.cpp							\
+			cmdPrivmsg.cpp						\
+			cmdUser.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
