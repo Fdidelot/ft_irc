@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/14 17:36:52 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:58:32 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ void Channel::removeFromChannel(User *user)
 
 void Channel::sendToChannel(std::string str)
 {
+	(void)str;
 	users_list::iterator it;
 	while (*it)
 	{
-		send((*it)->getFd(), str.c_str(), str.size(), NULL); //PRIVMSG
+		//send((*it)->getFd(), str.c_str(), str.size(), NULL); //PRIVMSG
 		it++;
 	}
 }

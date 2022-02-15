@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/14 12:29:59 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/15 17:39:38 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ class Server {
 		void	endConnection(int currentSocket);
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
+		User*	getUser(std::string name);
 
 		int		getCurrentClient(void) const;
 
