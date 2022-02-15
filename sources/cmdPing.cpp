@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdPing.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:24:58 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/15 17:25:13 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:57:27 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	Command::_ping(std::stringstream& completeCommand, User& user) {
 
+	std::string servName = static_cast<std::string>(SERV_NAME);
+
 	(void)completeCommand;
-	sendCommand(user, PONG);
+	sendCommand(user, PONG, PONG_MSG(servName));
 }

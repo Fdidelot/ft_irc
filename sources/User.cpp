@@ -180,7 +180,8 @@ void	User::setMode(bool onOff, const char* modes) {
 			*modes != 's' )
 		{
 			setErrModeChar(*modes);
-			errCommand.sendCommand(*this, UNKNOWN_MODE);
+			errCommand.sendCommand(*this, ERRCODE_UNKNOWNMODE,
+				ERR_UNKNOWNMODE(std::string(1, *modes)));
 		}
 		switch (*modes)
 		{
