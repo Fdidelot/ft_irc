@@ -98,10 +98,10 @@
 # define ERR_SUMMONDISABLED() (":SUMMON has been disabled\r\n")
 # define ERR_USERSDISABLED() (":USERS has been disabled\r\n")
 # define ERR_NOTREGISTERED() (":You have not registered\r\n")
-# define ERR_NEEDMOREPARAMS(command) (command + " :Not enough parameters\r\n")
-# define ERR_ALREADYREGISTRED() (":Unauthorized command (already registered)\r\n")
+# define ERR_NEEDMOREPARAMS(command) (command + " :Not enough parameters\r\n") // 461
+# define ERR_ALREADYREGISTRED() (":Unauthorized command (already registered)\r\n") // 462
 # define ERR_NOPERMFORHOST() (":Your host isn't among the privileged\r\n")
-# define ERR_PASSWDMISMATCH() (":Password incorrect\r\n")
+# define ERR_PASSWDMISMATCH() (":Password incorrect\r\n") // 464
 # define ERR_YOUREBANNEDCREEP() (":You are banned from this server\r\n")
 # define ERR_KEYSET(channel) (channel + " :Channel key already set\r\n")
 # define ERR_CHANNELISFULL(channel) (channel + " :Cannot join channel (+l)\r\n")

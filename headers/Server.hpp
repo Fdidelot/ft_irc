@@ -77,6 +77,7 @@ class Server {
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
 		User*	getUser(std::string name);
+		std::string		getPassword();
 
 		int		getCurrentClient(void) const;
 
