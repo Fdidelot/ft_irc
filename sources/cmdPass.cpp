@@ -14,18 +14,20 @@
 
 void	Command::_pass(std::stringstream& completeCommand, User& user) {
 
-	if (!user.getNick().empty() && !user.getUserOrNickCmd())
+	if (user.getNick().empty() && !user.getUserOrNickCmd())
 	{
 		std::string pass;
 		std::string cmd = "PASS";
 		completeCommand >> pass;
-		if (!pass.empty())
-			sendCommand(user, 462, ERR_NEEDMOREPARAMS(cmd));
+		if (pass.empty())
+		{
+			sendCommand(user, 461, ERR_NEEDMOREPARAMS(cmd));
+		}
 		if (pass != user.getServer().getPassword())
 			user.getServer().endConnection(user.getFd());
 	}
 	else
 	{
-		sendCommand(user, 461, ERR_ALREADYREGISTRED());
+		sendCommand(user, 462, ERR_ALREADYREGISTRED());
 	}
 }
