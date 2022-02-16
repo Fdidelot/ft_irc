@@ -69,7 +69,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_mode,
 		&Command::_join,
 		&Command::_ping,
-		&Command::_privmsg
+		&Command::_privmsg,
+		&Command::_quit
 	};
 	std::string commandId[NB_COMMAND] = {
 		"PASS",
@@ -79,7 +80,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"MODE",
 		"JOIN",
 		"PING",
-		"PRIVMSG"
+		"PRIVMSG",
+		"QUIT"
 	};
 
 	int	i;
