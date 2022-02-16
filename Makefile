@@ -6,7 +6,7 @@
 #    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/15 17:39:07 by psemsari         ###   ########.fr        #
+#    Updated: 2022/02/16 12:37:39 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS =		main.cpp							\
 			cmdJoin.cpp							\
 			cmdPing.cpp							\
 			cmdPrivmsg.cpp						\
-			cmdUser.cpp
+			cmdUser.cpp							\
+			cmdPart.cpp
 
 vpath %.cpp $(PATH_SRCS)
 

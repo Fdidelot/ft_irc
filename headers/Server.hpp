@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/15 17:39:38 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:14:43 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ class Channel;
 class Server {
 
 	public:
+		typedef std::map<std::string, Channel> Channel_map;
+		typedef std::map<std::string, Channel>::iterator Channel_map_it;
+
+	public:
 
 		Server(void);
 		~Server(void);
@@ -77,10 +81,12 @@ class Server {
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
 		User*	getUser(std::string name);
+		Channel*	getChannel(std::string name);
 
 		int		getCurrentClient(void) const;
 
 		void	sendToEveryone(int currentSocket); // ça va s'en aller ça, fin sans doute
+		void	createChannel(std::string name);
 
 		class badArgumentsCountException : public std::exception {
 
