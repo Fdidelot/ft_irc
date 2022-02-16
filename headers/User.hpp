@@ -16,6 +16,9 @@
 # include <iostream>
 
 # include "Server.hpp"
+# include "Channel.hpp"
+# include "Command.hpp"
+# include <list>
 
 # define DEFAULT_NICKNAME " * "
 
@@ -35,6 +38,9 @@ typedef struct s_mode
 class User
 {
 	public:
+		typedef std::list<Channel *> channels_list;
+
+	public:
 
 		User(void);
 		User(int fd, Server* server);
@@ -51,6 +57,7 @@ class User
 		std::string	getModes(void) const;
 		char		getErrModeChar(void) const;
 		Server&		getServer(void) const;
+		Channel*	getChannel(std::string name);
 
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
@@ -58,6 +65,7 @@ class User
 		void	setMode(bool onOff, const char* modes);
 		void	setErrModeChar(char c);
 
+		void	addChannel(Channel* channel);
 		void	handleCommand(char* buffer);
 		void	execCommand(std::string commandLine);
 
@@ -72,6 +80,7 @@ class User
 		t_mode			_mode; // user actual mode
 		Server*			_server;
 		char			_errModeChar;
+		channels_list	_channels_list;
 
 };
 

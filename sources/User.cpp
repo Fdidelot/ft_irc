@@ -142,6 +142,19 @@ char	User::getErrModeChar(void) const {
 	return (_errModeChar);
 }
 
+Channel*	User::getChannel(std::string name)
+{
+	channels_list::iterator it = _channels_list.begin();
+	channels_list::iterator ite = _channels_list.end();
+
+	for(; it != ite; it++)
+	{
+		if ((*it)->getName() == name)
+			return (*it);
+	}
+	return (NULL);
+}
+
 /*						Setters								*/
 void	User::setCommandEnd(bool b) {
 
@@ -259,4 +272,9 @@ void	User::handleCommand(char* buffer) {
 			_commandBuf.clear();
 		}
 	}
+}
+
+void	User::addChannel(Channel* channel)
+{
+	_channels_list.push_back(channel);
 }

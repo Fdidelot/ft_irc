@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/15 17:40:55 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:14:50 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ User*	Server::getUser(std::string name)
 			return (&it->second);
 	}
 	return (NULL);
+}
+
+Channel*	Server::getChannel(std::string name)
+{
+	Channel_map_it it = _channels.find(name);
+	if (it == _channels.end())
+		return (NULL);
+	return (&it->second);
 }
 
 /*						Setters								*/
@@ -161,6 +169,7 @@ void	Server::endConnection(int currentSocket) {
 		std::cout << "ircserv: socket " << currentSocket << " hung up" << std::endl;
 	else
 		perror("recv");
+	_users.erase(currentSocket);
 	close(currentSocket);
 	FD_CLR(currentSocket, &_masterFds);
 }
@@ -180,11 +189,16 @@ void	Server::sendToEveryone(int currentSocket) {
 	}
 }
 
+void	Server::createChannel(std::string name)
+{
+	_channels[name] = Channel(name);
+}
+
 void	Server::launchServer(char* port, char* password) {
 
 	_password = password;
 	initAi(port); // getaddrinfo
-	bindToFirst(); // bind to first opened socket
+	bindToFirst(); // bind listener
 	tryListen(); // try to listen on the opened port
 	FD_SET(_listener, &_masterFds); // set the listener fd to the master set
 	_fdMax = _listener; // set the maximum fd possible
