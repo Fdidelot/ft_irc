@@ -58,6 +58,11 @@ Channel*	Server::getChannel(std::string name)
 	return (&it->second);
 }
 
+std::string Server::getPassword(){
+
+	return (this->_password);
+}
+
 /*						Setters								*/
 
 /************************************************************/
@@ -136,6 +141,7 @@ void*	Server::getInAddr(struct sockaddr *sa) {
 		return &(((struct sockaddr_in*)sa)->sin_addr);
 	return &(((struct sockaddr_in6*)sa)->sin6_addr);
 }
+
 
 void	Server::newConnection(void) {
 

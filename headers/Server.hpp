@@ -82,6 +82,7 @@ class Server {
 		void	execCommand(std::string commandLine);
 		User*	getUser(std::string name);
 		Channel*	getChannel(std::string name);
+		std::string		getPassword();
 
 		int		getCurrentClient(void) const;
 

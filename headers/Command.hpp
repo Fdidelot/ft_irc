@@ -14,7 +14,7 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 9 //add if command
+# define NB_COMMAND 10 //add if command
 # define EOT_CODE 4
 # define SEND_OPT 0
 
@@ -98,10 +98,10 @@
 # define ERR_SUMMONDISABLED() (":SUMMON has been disabled\r\n")
 # define ERR_USERSDISABLED() (":USERS has been disabled\r\n")
 # define ERR_NOTREGISTERED() (":You have not registered\r\n")
-# define ERR_NEEDMOREPARAMS(command) (command + " :Not enough parameters\r\n")
-# define ERR_ALREADYREGISTRED() (":Unauthorized command (already registered)\r\n")
+# define ERR_NEEDMOREPARAMS(command) (command + " :Not enough parameters\r\n") // 461
+# define ERR_ALREADYREGISTRED() (":Unauthorized command (already registered)\r\n") // 462
 # define ERR_NOPERMFORHOST() (":Your host isn't among the privileged\r\n")
-# define ERR_PASSWDMISMATCH() (":Password incorrect\r\n")
+# define ERR_PASSWDMISMATCH() (":Password incorrect\r\n") // 464
 # define ERR_YOUREBANNEDCREEP() (":You are banned from this server\r\n")
 # define ERR_KEYSET(channel) (channel + " :Channel key already set\r\n")
 # define ERR_CHANNELISFULL(channel) (channel + " :Cannot join channel (+l)\r\n")
@@ -320,6 +320,7 @@ class Command
 		void		_ping(std::stringstream& completeCommand, User& user);
 		void		_privmsg(std::stringstream& completeCommand, User& user);
 		void		_part(std::stringstream& completeCommand, User& user);
+		void		_quit(std::stringstream& completeCommand, User& user);
 };
 
 #endif

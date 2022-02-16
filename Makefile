@@ -43,7 +43,8 @@ SRCS =		main.cpp							\
 			cmdPing.cpp							\
 			cmdPrivmsg.cpp						\
 			cmdUser.cpp							\
-			cmdPart.cpp
+			cmdPart.cpp							\
+			cmdQuit.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
