@@ -8,5 +8,5 @@ void    Command::_quit(std::stringstream& completeCommand, User& user) {
     completeCommand >> arg;
     reply = "QUIT: " + arg;
 	send(user.getFd(), reply.c_str(), reply.size(), SEND_OPT);
-	user.getServer().endConnection(user.getFd());
+    user.setIsEnded(true);
 }

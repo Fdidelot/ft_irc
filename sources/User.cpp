@@ -21,7 +21,8 @@ User::User(void) :	_userOrNickCmd(false),
 					_fd(-1),
 					_nick(DEFAULT_NICKNAME),
 					_server(NULL),
-					_errModeChar('i') {
+					_errModeChar('i'),
+					_isEnded(false) {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -39,7 +40,8 @@ User::User(int fd, Server* server) :	_userOrNickCmd(false),
 										_fd(fd),
 										_nick(DEFAULT_NICKNAME),
 										_server(server),
-										_errModeChar('i') {
+										_errModeChar('i'),
+										_isEnded(false) {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -155,6 +157,11 @@ Channel*	User::getChannel(std::string name)
 	return (NULL);
 }
 
+bool	User::getIsEnded(void) const {
+
+	return (_isEnded);
+}
+
 /*						Setters								*/
 void	User::setCommandEnd(bool b) {
 
@@ -174,6 +181,11 @@ void	User::setUserOrNickCmd(bool b) {
 void	User::setErrModeChar(char c) {
 
 	_errModeChar = c;
+}
+
+void	User::setIsEnded(bool b) {
+
+	_isEnded = b;
 }
 
 void	User::setMode(bool onOff, const char* modes) {
@@ -270,6 +282,11 @@ void	User::handleCommand(char* buffer) {
 			execCommand(getCommandBuf());
 			setCommandEnd(false);
 			_commandBuf.clear();
+			if (getIsEnded())
+			{
+				getServer().endConnection(getFd());
+				return ;
+			}
 		}
 	}
 }

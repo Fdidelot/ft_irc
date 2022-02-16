@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdPass.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:24:34 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/15 17:24:50 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/16 18:41:55 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	Command::_pass(std::stringstream& completeCommand, User& user) {
 
-	if (user.getNick().empty() && !user.getUserOrNickCmd())
+	std::cout << "Pass command :" << completeCommand.str() << std::endl;
+	if (!user.getUserOrNickCmd())
 	{
 		std::string pass;
 		std::string cmd = "PASS";
 		completeCommand >> pass;
+		std::cout << "Password is :" << pass << std::endl;
 		if (pass.empty())
 		{
 			sendCommand(user, 461, ERR_NEEDMOREPARAMS(cmd));

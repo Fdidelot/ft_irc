@@ -58,12 +58,14 @@ class User
 		char		getErrModeChar(void) const;
 		Server&		getServer(void) const;
 		Channel*	getChannel(std::string name);
+		bool		getIsEnded(void)const ;
 
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
 		void	setUserOrNickCmd(bool b);
 		void	setMode(bool onOff, const char* modes);
 		void	setErrModeChar(char c);
+		void	setIsEnded(bool b);
 
 		void	addChannel(Channel* channel);
 		void	handleCommand(char* buffer);
@@ -81,6 +83,7 @@ class User
 		Server*			_server;
 		char			_errModeChar;
 		channels_list	_channels_list;
+		bool			_isEnded;
 
 };
 
