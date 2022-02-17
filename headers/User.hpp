@@ -68,6 +68,10 @@ class User
 		void	setIsEnded(bool b);
 
 		void	addChannel(Channel* channel);
+		void	removeChannel(std::string name)
+		{
+			_channels_list.remove(getChannel(name));
+		}
 		void	handleCommand(char* buffer);
 		void	execCommand(std::string commandLine);
 
