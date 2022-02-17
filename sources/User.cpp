@@ -194,20 +194,6 @@ void	User::setMode(bool onOff, const char* modes) {
 
 	while (*modes != '\0')
 	{
-		if (*modes != 'a' &&
-			*modes != 'i' &&
-			*modes != 'w' &&
-			*modes != 'r' &&
-			*modes != 'o' &&
-			*modes != 'O' &&
-			*modes != '+' &&
-			*modes != '-' &&
-			*modes != 's' )
-		{
-			setErrModeChar(*modes);
-			errCommand.sendCommand(*this, ERRCODE_UNKNOWNMODE,
-				ERR_UNKNOWNMODE(std::string(1, *modes)));
-		}
 		switch (*modes)
 		{
 			case 'a':
@@ -222,15 +208,21 @@ void	User::setMode(bool onOff, const char* modes) {
 			case 'r':
 				_mode.r = onOff;
 				break;
+			case '+':
+				break;
+			case '-':
+				break;
 			case 'o':
-				_mode.o = onOff;
 				break;
 			case 'O':
-				_mode.O = onOff;
 				break;
 			case 's':
 				_mode.s = onOff;
 				break;
+			default:
+				setErrModeChar(*modes);
+				errCommand.sendCommand(*this, ERRCODE_UNKNOWNMODE,
+					ERR_UNKNOWNMODE(std::string(1, *modes)));
 		}
 		modes++;
 	}
