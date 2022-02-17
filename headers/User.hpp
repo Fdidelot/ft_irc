@@ -58,7 +58,7 @@ class User
 		char		getErrModeChar(void) const;
 		Server&		getServer(void) const;
 		Channel*	getChannel(std::string name);
-		bool		getIsEnded(void)const ;
+		bool		getIsEnded(void) const;
 
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
