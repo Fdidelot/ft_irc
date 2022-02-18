@@ -47,6 +47,7 @@ class User
 		~User(void);
 
 		bool	addToBuf(void);
+		void	addToSend(std::string string);
 
 		bool		getCommandEnd(void) const;
 		int			getFd(void) const;
@@ -60,6 +61,7 @@ class User
 		Channel*	getChannel(std::string name);
 		bool		getIsEnded(void) const;
 
+		int		setOperator(std::string name, std::string pass);
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
 		void	setUserOrNickCmd(bool b);
@@ -81,6 +83,7 @@ class User
 		bool			_commandEnd; // true means commandBuf is ready to be exec
 		std::string		_commandBuf; // store the command
 		std::string		_totalBuf; // store the command
+		std::string		_toSend;
 		int				_fd; // socket id link to this user
 		std::string		_nick; // nickname of the user
 		t_mode			_mode; // user actual mode
@@ -88,6 +91,7 @@ class User
 		char			_errModeChar;
 		channels_list	_channels_list;
 		bool			_isEnded;
+		bool			_isOperator;
 
 };
 
