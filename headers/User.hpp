@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   User.hpp                                       :+:      :+:    :+:   */
+/*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:55 by fdidelot          #+#    #+#             */
-/*   Updated: 2021/12/16 18:10:47 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:46:40 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ class User
 		Server&		getServer(void) const;
 		Channel*	getChannel(std::string name);
 		bool		getIsEnded(void) const;
+		bool		getPassGiven(void) const;
 
 		int		setOperator(std::string name, std::string pass);
 		void	setCommandEnd(bool b);
@@ -68,6 +69,7 @@ class User
 		void	setMode(bool onOff, const char* modes);
 		void	setErrModeChar(char c);
 		void	setIsEnded(bool b);
+		void	setPassGiven(bool b);
 
 		void	addChannel(Channel* channel);
 		void	removeChannel(std::string name)
@@ -91,7 +93,7 @@ class User
 		char			_errModeChar;
 		channels_list	_channels_list;
 		bool			_isEnded;
-		bool			_isOperator;
+		bool			_passGiven;
 
 };
 

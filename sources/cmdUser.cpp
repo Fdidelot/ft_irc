@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:25:56 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/15 17:26:11 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:47:15 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	Command::_user(std::stringstream& completeCommand, User& user) {
 
-	(void)completeCommand; (void)user;
+	(void)completeCommand;
+	if (user.getPassGiven() == false)
+		user.setIsEnded(true);
 	if (user.getUserOrNickCmd())
 		sendStartMsgs(user);
 	user.setUserOrNickCmd(true);

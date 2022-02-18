@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   User.cpp                                       :+:      :+:    :+:   */
+/*   User.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2021/12/07 19:18:07 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/18 19:29:13 by mvidal-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ User::User(void) :	_userOrNickCmd(false),
 					_server(NULL),
 					_errModeChar('i'),
 					_isEnded(false),
-					_isOperator(false) {
+					_passGiven(false) {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -43,7 +43,7 @@ User::User(int fd, Server* server) :	_userOrNickCmd(false),
 										_server(server),
 										_errModeChar('i'),
 										_isEnded(false),
-										_isOperator(false) {
+										_passGiven(false) {
 
 
 	_mode.a = false;
@@ -92,6 +92,11 @@ std::string User::getNick(void) const {
 bool	User::getUserOrNickCmd(void) const {
 
 	return (_userOrNickCmd);
+}
+
+bool	User::getPassGiven(void) const {
+
+	return (_passGiven);
 }
 
 bool	User::getMode(char m) const {
@@ -170,7 +175,7 @@ int		User::setOperator(std::string name, std::string pass)
 {
 	if (name == OPERNAME && pass == OPERPASS)
 	{
-		_isOperator = 1;
+		_mode.o = true;
 		return (0);
 	}
 	else
@@ -183,6 +188,11 @@ int		User::setOperator(std::string name, std::string pass)
 void	User::setCommandEnd(bool b) {
 
 	_commandEnd = b;
+}
+
+void	User::setPassGiven(bool b) {
+
+	_passGiven = b;
 }
 
 void	User::setNickname(std::string nickname) {

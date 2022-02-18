@@ -23,3 +23,9 @@ tags
 
 # debug
 .gdb_history
+
+# python garbage
+*.pyc
+
+# unknown
+.nfs*
