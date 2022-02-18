@@ -42,6 +42,8 @@
 # define SERV_VERSION "0.1"
 # define CREATION_DATE "Today"
 
+# define MOTD "Welcome to our ft_irc server !"
+
 # define OPERNAME "ircserver"
 # define OPERPASS "karmineCorp"
 
@@ -112,7 +114,7 @@ class Server {
 		fd_set				_masterFds;			// master file descriptor list
 		fd_set				_readFds;			// temporary file descriptor list for select(2)
 		struct addrinfo		_hints; 			// hint struct for getaddrinfo to set _ai
-		struct addrinfo		*_ai; 				// list of struct given by getaddrinfo use for binding
+		struct addrinfo		*_ai;				// list of struct given by getaddrinfo use for binding
 		int					_listener;			// listening socket descriptor
 		int					_fdMax;				// maximum file descriptor number
 		int					_nbytes;			// number of bytes read

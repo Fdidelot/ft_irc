@@ -264,6 +264,11 @@ bool	User::addToBuf(void) {
 	return (FAILURE_ADD);
 }
 
+void	User::addToSend(std::string string) {
+
+	_toSend += string;
+}
+
 void	User::execCommand(std::string commandLine) {
 
 	std::string			commandName;
@@ -275,6 +280,8 @@ void	User::execCommand(std::string commandLine) {
 	Command currentCommand(commandName);
 
 	currentCommand.launchCommand(lineStream, *this);
+	send(_fd, _toSend.c_str(), _toSend.size(), SEND_OPT);
+	_toSend.clear();
 	lineStream.clear();
 }
 
