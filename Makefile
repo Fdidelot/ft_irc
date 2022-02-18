@@ -6,7 +6,7 @@
 #    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/16 12:37:39 by psemsari         ###   ########.fr        #
+#    Updated: 2022/02/18 12:30:52 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRCS =		main.cpp							\
 			cmdPrivmsg.cpp						\
 			cmdUser.cpp							\
 			cmdPart.cpp							\
-			cmdQuit.cpp
+			cmdQuit.cpp							\
+			cmdList.cpp
 
 vpath %.cpp $(PATH_SRCS)
 

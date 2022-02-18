@@ -127,7 +127,7 @@
 */
 // Handmade responses
 # define PONG			-1
-# define PONG_MSG(servName) (":" + servName + " PONG " + servName + " :" + servName)
+# define PONG_MSG(servName) (":" + servName + " PONG " + servName + " :" + servName + "\r\n")
 
 // Response codes
 # define RPLCODE_MESSAGE

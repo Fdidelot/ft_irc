@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:23:09 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/17 16:26:39 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:36:02 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	Command::_join(std::stringstream& completeCommand, User& user) {
 		channel->addToChannel(&user);//euheuheueh
 		user.addChannel(channel);
 	}
-	sendCommand(user, PONG, completeCommand.str());
+	sendCommand(user, PONG, completeCommand.str() + "\r\n");
 }
