@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:05:02 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/16 17:25:40 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/18 15:22:36 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ class Channel
 		Channel(std::string name);
 		~Channel();
 		std::string getName();
+		users_list&	getList()
+		{
+			return (_users);
+		}
 		void		setName(std::string name);
 		void addToChannel(User *user);
 		void addOpToChannel(User *user);

@@ -322,6 +322,7 @@ class Command
 		void		_part(std::stringstream& completeCommand, User& user);
 		void		_quit(std::stringstream& completeCommand, User& user);
 		void		_list(std::stringstream& completeCommand, User& user);
+		void		_names(std::stringstream& completeCommand, User& user);
 };
 
 #endif

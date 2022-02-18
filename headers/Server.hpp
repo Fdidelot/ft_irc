@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/17 16:39:41 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/18 13:15:44 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ class Server {
 		std::string		getPassword();
 
 		int		getCurrentClient(void) const;
+		Channel_map& getChannelMap(void)
+		{
+			return (_channels);
+		}
 
 		void	sendToEveryone(int currentSocket); // ça va s'en aller ça, fin sans doute
 		void	createChannel(std::string name);
