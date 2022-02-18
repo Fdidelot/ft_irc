@@ -39,13 +39,13 @@ void	Command::sendCommand(User& user, int msgId, std::string toSend) const {
 	std::stringstream numberStream;
 	std::string servName = static_cast<std::string>(SERV_NAME);
 
-	int fd = user.getFd();
+	//ADD write rights verification
 	if (msgId != PONG)
 	{
 		numberStream << std::setw(3) << std::setfill('0') << msgId;
 		toSend.insert(0, RPL_MESSAGE(servName, numberStream.str(), user.getNick()));
 	}
-	send(fd, toSend.c_str(), toSend.size(), SEND_OPT);
+	user.addToSend(toSend);
 }
 
 void	Command::sendStartMsgs(User& user) const {
@@ -72,7 +72,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_privmsg,
 		&Command::_part,
 		&Command::_quit,
-		&Command::_list
+		&Command::_oper,
+		&Command::_motd
 	};
 	std::string commandId[NB_COMMAND] = {
 		"PASS",
@@ -85,7 +86,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"PRIVMSG",
 		"PART",
 		"QUIT",
-		"LIST"
+		"OPER",
+		"motd"
 	};
 
 	int	i;
