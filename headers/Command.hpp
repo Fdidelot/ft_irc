@@ -14,7 +14,7 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 10 //add if command
+# define NB_COMMAND 11 //add if command
 # define EOT_CODE 4
 # define SEND_OPT 0
 
@@ -321,6 +321,7 @@ class Command
 		void		_privmsg(std::stringstream& completeCommand, User& user);
 		void		_part(std::stringstream& completeCommand, User& user);
 		void		_quit(std::stringstream& completeCommand, User& user);
+		void		_list(std::stringstream& completeCommand, User& user);
 };
 
 #endif

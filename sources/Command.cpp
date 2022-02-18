@@ -71,7 +71,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_ping,
 		&Command::_privmsg,
 		&Command::_part,
-		&Command::_quit
+		&Command::_quit,
+		&Command::_list
 	};
 	std::string commandId[NB_COMMAND] = {
 		"PASS",
@@ -83,7 +84,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"PING",
 		"PRIVMSG",
 		"PART",
-		"QUIT"
+		"QUIT",
+		"LIST"
 	};
 
 	int	i;
