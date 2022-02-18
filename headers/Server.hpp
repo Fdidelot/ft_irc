@@ -90,6 +90,10 @@ class Server {
 		std::string		getPassword();
 
 		int		getCurrentClient(void) const;
+		Channel_map& getChannelMap(void)
+		{
+			return (_channels);
+		}
 
 		void	sendToEveryone(int currentSocket); // ça va s'en aller ça, fin sans doute
 		void	createChannel(std::string name);

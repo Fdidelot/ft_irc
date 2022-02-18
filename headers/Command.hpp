@@ -321,6 +321,8 @@ class Command
 		void		_privmsg(std::stringstream& completeCommand, User& user);
 		void		_part(std::stringstream& completeCommand, User& user);
 		void		_quit(std::stringstream& completeCommand, User& user);
+		void		_list(std::stringstream& completeCommand, User& user);
+		void		_names(std::stringstream& completeCommand, User& user);
 		void		_oper(std::stringstream& completeCommand, User& user);
 		void		_motd(std::stringstream& completeCommand, User& user);
 };
