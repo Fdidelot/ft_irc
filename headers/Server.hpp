@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/17 16:39:41 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/18 11:15:30 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define SERV_NAME "Cthulhu"
 # define SERV_VERSION "0.1"
 # define CREATION_DATE "Today"
+
+# define OPERNAME "ircserver"
+# define OPERPASS "karmineCorp"
 
 # define SUCCESS 0
 # define SUCCESS_ADD 1

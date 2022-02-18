@@ -22,7 +22,8 @@ User::User(void) :	_userOrNickCmd(false),
 					_nick(DEFAULT_NICKNAME),
 					_server(NULL),
 					_errModeChar('i'),
-					_isEnded(false) {
+					_isEnded(false),
+					_isOperator(false) {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -41,7 +42,9 @@ User::User(int fd, Server* server) :	_userOrNickCmd(false),
 										_nick(DEFAULT_NICKNAME),
 										_server(server),
 										_errModeChar('i'),
-										_isEnded(false) {
+										_isEnded(false),
+										_isOperator(false) {
+
 
 	_mode.a = false;
 	_mode.i = false;
@@ -163,6 +166,20 @@ bool	User::getIsEnded(void) const {
 }
 
 /*						Setters								*/
+int		User::setOperator(std::string name, std::string pass)
+{
+	if (name == OPERNAME && pass == OPERPASS)
+	{
+		_isOperator = 1;
+		return (0);
+	}
+	else
+	{
+		return (1);
+	}
+
+}
+
 void	User::setCommandEnd(bool b) {
 
 	_commandEnd = b;

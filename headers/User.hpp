@@ -60,6 +60,7 @@ class User
 		Channel*	getChannel(std::string name);
 		bool		getIsEnded(void) const;
 
+		int		setOperator(std::string name, std::string pass);
 		void	setCommandEnd(bool b);
 		void	setNickname(std::string nickname);
 		void	setUserOrNickCmd(bool b);
@@ -88,6 +89,7 @@ class User
 		char			_errModeChar;
 		channels_list	_channels_list;
 		bool			_isEnded;
+		bool			_isOperator;
 
 };
 
