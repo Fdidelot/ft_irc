@@ -6,7 +6,7 @@
 /*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/18 11:15:30 by bemoreau         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:16:52 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ class Server {
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
 		User*	getUser(std::string name);
+		std::map<int, User> getUsers(void);
 		Channel*	getChannel(std::string name);
 		std::string		getPassword();
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/18 19:29:13 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/02/21 21:10:24 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int		User::setOperator(std::string name, std::string pass)
 {
 	if (name == OPERNAME && pass == OPERPASS)
 	{
-		_mode.o = true;
+		this->setMode(true, "o");
 		return (0);
 	}
 	else
@@ -240,7 +240,7 @@ void	User::setMode(bool onOff, const char* modes) {
 			case '-':
 				break;
 			case 'o':
-				break;
+				_mode.o = onOff;
 			case 'O':
 				break;
 			case 's':
