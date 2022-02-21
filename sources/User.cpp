@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/18 19:29:13 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:40:05 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ void	User::execCommand(std::string commandLine) {
 	Command currentCommand(commandName);
 
 	currentCommand.launchCommand(lineStream, *this);
-	//if (FD_ISSET(_fd, user.getServer()._writeFds)) je sais pas comment l'ajouter
+	//if (FD_ISSET(_fd, this->getServer()._writeFds))
 	send(_fd, _toSend.c_str(), _toSend.size(), SEND_OPT);
 	_toSend.clear();
 	lineStream.clear();

@@ -6,7 +6,7 @@
 #    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/18 19:12:09 by mvidal-a         ###   ########.fr        #
+#    Updated: 2022/02/21 16:02:09 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,8 @@ SRCS =		main.cpp							\
 			cmdQuit.cpp							\
 			cmdOper.cpp							\
 			cmdMotd.cpp							\
-			cmdList.cpp
+			cmdList.cpp							\
+			cmdKick.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -70,12 +71,11 @@ OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.cpp=.o))
 #-----------------------------------------------#
 ################### FLAGS #######################
 #-----------------------------------------------#
-CXXFLAGS =	-Wall -Wextra -Werror				\
-			-std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 ifeq ($(d), 0)
-	CXXFLAGS	+= -Wpadded
-	CXXFLAGS	+= -g3
-	CXXFLAGS	+= -fsanitize=address,undefined
+CXXFLAGS	+= -g3
+CXXFLAGS	+= -Wpadded
+CXXFLAGS	+= -fsanitize=address,undefined
 endif
 ifeq ($(d), 1)
 	CXXFLAGS	+= -g

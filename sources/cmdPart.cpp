@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:35:31 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/18 12:35:44 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:41:39 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	Command::_part(std::stringstream& completeCommand, User& user)
 		else
 		{
 			user.removeChannel(toPart);
-			user.getServer().eraseChannel(toPart);
+			//user.getServer().eraseChannel(toPart); //segfault avec part et 2 clients
 			sendCommand(user, PONG, completeCommand.str() + "\r\n");
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:05:02 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/18 15:22:36 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:11:12 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Command;
 class Channel
 {
 	public:
-		typedef std::list<User *> users_list;
+		typedef std::list<User *> users_list; // à refaire avec des references
 
 	public:
 		Channel(){}
@@ -39,7 +39,7 @@ class Channel
 		void addToChannel(User *user);
 		void addOpToChannel(User *user);
 		void removeFromChannel(User *user);
-		void sendToChannel(std::string str, Command &command);
+		void sendToChannel(std::string str, Command &command, int notsend);
 
 	private:
 		std::string _name;
