@@ -290,6 +290,7 @@ void	User::execCommand(std::string commandLine) {
 	Command currentCommand(commandName);
 
 	currentCommand.launchCommand(lineStream, *this);
+	//if (FD_ISSET(_fd, user.getServer()._writeFds)) je sais pas comment l'ajouter
 	send(_fd, _toSend.c_str(), _toSend.size(), SEND_OPT);
 	_toSend.clear();
 	lineStream.clear();
