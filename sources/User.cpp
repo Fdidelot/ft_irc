@@ -175,7 +175,7 @@ int		User::setOperator(std::string name, std::string pass)
 {
 	if (name == OPERNAME && pass == OPERPASS)
 	{
-		_mode.o = true;
+		this->setMode(true, "o");
 		return (0);
 	}
 	else
@@ -240,7 +240,7 @@ void	User::setMode(bool onOff, const char* modes) {
 			case '-':
 				break;
 			case 'o':
-				break;
+				_mode.o = onOff;
 			case 'O':
 				break;
 			case 's':

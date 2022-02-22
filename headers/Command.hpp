@@ -14,7 +14,7 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 14 //add if command
+# define NB_COMMAND 16 //add if command
 # define EOT_CODE 4
 # define SEND_OPT 0
 
@@ -109,7 +109,7 @@
 # define ERR_INVITEONLYCHAN(channel) (channel + " :Cannot join channel (+i)\r\n")
 # define ERR_BANNEDFROMCHAN(channel) (channel + " :Cannot join channel (+b)\r\n")
 # define ERR_BADCHANNELKEY(channel) (channel + " :Cannot join channel (+k)\r\n")
-# define ERR_NOPRIVILEGES() (":Permission Denied- You're not an IRC operator\r\n")
+# define ERR_NOPRIVILEGES() (":Permission Denied- You're not an IRC operator\r\n") // 481
 # define ERR_CHANOPRIVSNEEDED(channel) (channel + " :You're not channel operator\r\n")
 # define ERR_CANTKILLSERVER() (":You cant kill a server!\r\n")
 # define ERR_NOOPERHOST() (":No O-lines for your host\r\n")
@@ -326,7 +326,9 @@ class Command
 		void		_names(std::stringstream& completeCommand, User& user);
 		void		_oper(std::stringstream& completeCommand, User& user);
 		void		_motd(std::stringstream& completeCommand, User& user);
+		void		_kill(std::stringstream& completeCommand, User& user);
 		void		_kick(std::stringstream& completeCommand, User& user);
+
 };
 
 #endif

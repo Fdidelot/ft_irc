@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/22 12:33:28 by psemsari         ###   ########.fr       */
-/*                                                                            */
+/*   Updated: 2022/02/21 21:16:47 by bemoreau         ###   ########.fr       */
 /* ************************************************************************** */
 
 #include "Server.hpp"
@@ -32,6 +31,12 @@ Server::~Server(void) {
 /*					Getters/Setters							*/
 /************************************************************/
 /*						Getters								*/
+
+std::map<int, User> Server::getUsers(void)
+{
+	return (_users);
+}
+
 int	Server::getCurrentClient(void) const {
 
 	return (_currentClient);

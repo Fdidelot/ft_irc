@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
+#    By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/21 16:02:09 by psemsari         ###   ########.fr        #
+#    Updated: 2022/02/21 21:09:23 by bemoreau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS =		main.cpp							\
 			cmdOper.cpp							\
 			cmdMotd.cpp							\
 			cmdList.cpp							\
+			cmdKill.cpp             \
 			cmdKick.cpp
 
 vpath %.cpp $(PATH_SRCS)
