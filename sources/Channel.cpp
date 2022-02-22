@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/16 17:24:41 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:01:12 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void Channel::removeFromChannel(User *user)
 	_users.remove(user);
 }
 
-void Channel::sendToChannel(std::string str, Command &command)
+void Channel::sendToChannel(std::string str, Command &command, int notsend)
 {
 	users_list::iterator it = _users.begin();
 	users_list::iterator ite = _users.end();
 	for (; it != ite; it++)
-		command.sendCommand(**it, PONG, str);
+		if ((*it)->getFd() != notsend)
+			command.sendDirect(**it, PONG, str);
 }
 
 void Channel::addOpToChannel(User *user)
