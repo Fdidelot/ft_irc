@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/22 13:48:10 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:45:47 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # define FAILURE_SELECT 4
 # define ERROR -1
 # define BACKLOG 10   // how many pending connections queue will hold
+# define SEND_OPT 0
 
 # include "Command.hpp"
 # include "User.hpp"

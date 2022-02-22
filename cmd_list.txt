@@ -48,3 +48,7 @@ Command: KILL
 Command: ERROR
    Parameters: <error message>
 ???
+
+signal handling
+voir commande pour fd ouvert
+leaks
