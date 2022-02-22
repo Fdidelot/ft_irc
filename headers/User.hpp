@@ -20,7 +20,7 @@
 # include "Command.hpp"
 # include <list>
 
-# define DEFAULT_NICKNAME " * "
+# define DEFAULT_NICKNAME "*"
 
 class Server;
 

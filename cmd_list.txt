@@ -17,7 +17,7 @@ Command: KICK
     Parameters: <channel> *( "," <channel> ) <user> *( "," <user> ) [<comment>]
 Command: PRIVMSG ✔️
     Parameters: <msgtarget> <text to be sent>
-Command: NOTICE
+Command: NOTICE ✔️
     Parameters: <msgtarget> <text>
 Command: PASS ✔️
    Parameters: <password>
@@ -40,7 +40,7 @@ Command: WHOIS
 
 Command: DIE
 	Parameters: None
-Command: KILL
+Command: KILL ✔️
    Parameters: <nickname> <comment>
 
 

@@ -1,19 +1,5 @@
 #include "Command.hpp"
 
-User    *findByNickName(User& user, std::string name)
-{
-    std::map<int, User> tmp = user.getServer().getUsers();
-    std::map<int, User>::iterator it = tmp.begin();
-    std::map<int, User>::iterator ite = tmp.end();
-    while (it != ite)
-    {
-        if (it->second.getNick() == name)
-            return (&(it->second));
-        it++;
-    }
-    return NULL;
-}
-
 void	Command::_kill(std::stringstream& completeCommand, User& user)
 {
     std::string cmd = "KILL";
@@ -38,13 +24,12 @@ void	Command::_kill(std::stringstream& completeCommand, User& user)
         sendCommand(user, ERRCODE_CANTKILLSERVER, ERR_CANTKILLSERVER());
         return ;
     }
-    target = findByNickName(user, nick);
+    target = user.getServer().findByNickName(user, nick);
     if (!target)
     {
         sendCommand(user, ERRCODE_NOSUCHNICK, ERR_NOSUCHNICK(nick));
         return ;
     }
-    sendCommand(*target, PONG, "You have been killed because: " + message);
-    user.getServer().endConnection(target->getFd());
-    std::cout << "Oui avec des amis!\n";
+    sendDirect(*target, PONG, "You have been killed because: " + message);
+    target->getServer().endConnection(target->getFd());
 }

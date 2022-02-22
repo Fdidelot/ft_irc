@@ -68,11 +68,45 @@ std::string Server::getPassword(){
 	return (this->_password);
 }
 
+std::vector<std::string> Server::getUnavalaibleNames()
+{
+	return (this->_unavalaibleNames);
+}
+
 /*						Setters								*/
+
+void Server::setUnavalaibleName(std::string name)
+{
+	if (std::find(_unavalaibleNames.begin(), _unavalaibleNames.end(), name) != _unavalaibleNames.end())
+		return ;
+	_unavalaibleNames.push_back(name);
+}
 
 /************************************************************/
 /*					Members functions						*/
 /************************************************************/
+
+bool	Server::isNicknameKilled(std::string name)
+{
+	if (std::find(_unavalaibleNames.begin(), _unavalaibleNames.end(), name) != _unavalaibleNames.end())
+		return true;
+	return false;
+}
+
+User    *Server::findByNickName(User& user, std::string name)
+{
+    std::map<int, User> tmp = user.getServer().getUsers();
+    std::map<int, User>::iterator it = tmp.begin();
+    std::map<int, User>::iterator ite = tmp.end();
+    while (it != ite)
+    {
+        if (it->second.getNick() == name)
+	            return (&(it->second));
+        it++;
+    }
+    return NULL;
+}
+
 void	Server::initHints(void) {
 
 	bzero(&_hints, sizeof(_hints));
