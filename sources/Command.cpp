@@ -91,7 +91,7 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"OPER",
 		"motd",
 		"LIST",
-		"KILL"
+		"kill"
 	};
 
 	int	i;

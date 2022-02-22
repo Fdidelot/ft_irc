@@ -44,7 +44,7 @@ void	Command::_kill(std::stringstream& completeCommand, User& user)
         sendCommand(user, ERRCODE_NOSUCHNICK, ERR_NOSUCHNICK(nick));
         return ;
     }
-    sendCommand(tmp, PONG, "You have been killed because: " + message);
-    user.getServer().endConnection(target.getFd());
+    sendCommand(*target, PONG, "You have been killed because: " + message);
+    user.getServer().endConnection(target->getFd());
     std::cout << "Oui avec des amis!\n";
 }

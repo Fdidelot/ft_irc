@@ -36,6 +36,7 @@
 # include <netinet/in.h>
 # include <arpa/inet.h>
 # include <netdb.h>
+# include <vector>
 //
 
 # define SERV_NAME "Cthulhu"
@@ -124,6 +125,7 @@ class Server {
 		int					_fdMax;				// maximum file descriptor number
 		int					_nbytes;			// number of bytes read
 		std::string			_password; 			// password defined by the server
+		std::vector<std::string> unavalaibleNames; // list of Unavalaible names (KILLed ones)
 		char				_buf[256];			// buffer for client data
 		int					_currentClient; 	// store the current client fd
 		std::map<int, User>	_users; 			// list of users associate with fd
