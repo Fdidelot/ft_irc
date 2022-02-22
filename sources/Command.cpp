@@ -59,7 +59,7 @@ void	Command::sendDirect(User& user, int msgId, std::string toSend) const {
 		numberStream << std::setw(3) << std::setfill('0') << msgId;
 		toSend.insert(0, RPL_MESSAGE(servName, numberStream.str(), user.getNick()));
 	}
-	send(user.getFd(), toSend.c_str(), toSend.size(), SEND_OPT);
+	user.getServer().sendCommand(user.getFd(), toSend);
 }
 
 void	Command::sendStartMsgs(User& user) const {

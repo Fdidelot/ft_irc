@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/21 15:38:01 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/22 12:33:28 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	Server::runSelect(void) {
 
 	timeout.tv_sec = 1;
 	timeout.tv_usec = 0;
-	if (select(_fdMax + 1, &_readFds, NULL, NULL, &timeout) == -1) {
+	if (select(_fdMax + 1, &_readFds, &_writeFds, NULL, &timeout) == -1) {
 		perror("select");
 		exit(FAILURE_SELECT);
 	}
@@ -196,6 +196,7 @@ void	Server::launchServer(char* port, char* password) {
 	while (1)
 	{
 		_readFds = _masterFds; // copy the master to manipulate
+		_writeFds = _readFds;
 		runSelect(); // runs select(2)
 		for (_currentClient = 0; _currentClient <= _fdMax; _currentClient++)
 		{
