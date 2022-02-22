@@ -31,5 +31,6 @@ void	Command::_kill(std::stringstream& completeCommand, User& user)
         return ;
     }
     sendDirect(*target, PONG, "You have been killed because: " + message);
+    user.getServer().setUnavalaibleName(nick);
     target->getServer().endConnection(target->getFd());
 }
