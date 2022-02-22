@@ -1,37 +1,37 @@
 
-Command: JOIN
+Command: JOIN ✔️
     Parameters: ( <channel> *( "," <channel> ) [ <key> *( "," <key> ) ] ) "0"
-Command: PART
+Command: PART ✔️ segfault quand il y a plus qu'une personne
     Parameters: <channel> *( "," <channel> ) [ <Part Message> ]
-Command: MODE (k et i minimum)
+Command: MODE ✔️ (k et i minimum)
     Parameters: <channel> *( ( "-" / "+" ) *<modes> *<modeparams> )
 Command: TOPIC
     Parameters: <channel> [ <topic> ]
-Command: NAMES
+Command: NAMES ✔️
     Parameters: [ <channel> *( "," <channel> ) [ <target> ] ]
-Command: LIST
+Command: LIST ✔️
     Parameters: [ <channel> *( "," <channel> ) [ <target> ] ]
 Command: INVITE
     Parameters: <nickname> <channel>
 Command: KICK
     Parameters: <channel> *( "," <channel> ) <user> *( "," <user> ) [<comment>]
-Command: PRIVMSG
+Command: PRIVMSG ✔️
     Parameters: <msgtarget> <text to be sent>
 Command: NOTICE
     Parameters: <msgtarget> <text>
-Command: PASS
+Command: PASS ✔️
    Parameters: <password>
-Command: NICK
+Command: NICK ✔️ nick remet le message d'annonce
    Parameters: <nickname>
-Command: PONG
+Command: PONG ✔️
    Parameters: <server> [ <server2> ]
-Command: MOTD
+Command: MOTD ✔️
    Parameters: [ <target> ]
-Command: OPER
+Command: OPER ✔️
    Parameters: <name> <password>
-Command: QUIT
+Command: QUIT ✔️
    Parameters: [ <Quit Message> ]
-Command: LIST
+Command: LIST ✔️
    Parameters: [ <channel> *( "," <channel> ) [ <target> ] ]
 Command: WHO
    Parameters: [ <mask> [ "o" ] ]

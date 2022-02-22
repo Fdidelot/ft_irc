@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/21 21:16:52 by bemoreau         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:48:10 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,14 @@ class Server {
 		void	endConnection(int currentSocket);
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
+		void	sendCommand(int fd, std::string message)
+		{
+			if (FD_ISSET(fd, &_writeFds))
+				send(fd, message.c_str(), message.size(), SEND_OPT);
+			else
+				endConnection(fd);
+		}
+
 		User*	getUser(std::string name);
 		std::map<int, User> getUsers(void);
 		Channel*	getChannel(std::string name);
@@ -97,7 +105,6 @@ class Server {
 			return (_channels);
 		}
 
-		void	sendToEveryone(int currentSocket); // ça va s'en aller ça, fin sans doute
 		void	createChannel(std::string name);
 		void	eraseChannel(std::string name)
 		{
@@ -119,6 +126,7 @@ class Server {
 
 		fd_set				_masterFds;			// master file descriptor list
 		fd_set				_readFds;			// temporary file descriptor list for select(2)
+		fd_set				_writeFds;			// check if i can write on fd
 		struct addrinfo		_hints; 			// hint struct for getaddrinfo to set _ai
 		struct addrinfo		*_ai;				// list of struct given by getaddrinfo use for binding
 		int					_listener;			// listening socket descriptor

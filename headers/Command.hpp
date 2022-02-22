@@ -14,7 +14,7 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 15 //add if command
+# define NB_COMMAND 16 //add if command
 # define EOT_CODE 4
 # define SEND_OPT 0
 
@@ -306,6 +306,7 @@ class Command
 
 		void	launchCommand(std::stringstream& completeCommand, User& user);
 		void	sendCommand(User& user, int msgId, std::string toSend) const;
+		void	sendDirect(User& user, int msgId, std::string toSend) const;
 		void	sendStartMsgs(User& user) const;
 
 	private:
@@ -326,6 +327,8 @@ class Command
 		void		_oper(std::stringstream& completeCommand, User& user);
 		void		_motd(std::stringstream& completeCommand, User& user);
 		void		_kill(std::stringstream& completeCommand, User& user);
+		void		_kick(std::stringstream& completeCommand, User& user);
+
 };
 
 #endif

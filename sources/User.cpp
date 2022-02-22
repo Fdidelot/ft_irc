@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/21 21:10:24 by bemoreau         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:50:23 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,7 @@ void	User::execCommand(std::string commandLine) {
 	Command currentCommand(commandName);
 
 	currentCommand.launchCommand(lineStream, *this);
-	send(_fd, _toSend.c_str(), _toSend.size(), SEND_OPT);
+	getServer().sendCommand(_fd, _toSend);
 	_toSend.clear();
 	lineStream.clear();
 }

@@ -7,7 +7,6 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
 /*   Updated: 2022/02/21 21:16:47 by bemoreau         ###   ########.fr       */
-/*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
@@ -135,7 +134,7 @@ void	Server::runSelect(void) {
 
 	timeout.tv_sec = 1;
 	timeout.tv_usec = 0;
-	if (select(_fdMax + 1, &_readFds, NULL, NULL, &timeout) == -1) {
+	if (select(_fdMax + 1, &_readFds, &_writeFds, NULL, &timeout) == -1) {
 		perror("select");
 		exit(FAILURE_SELECT);
 	}
@@ -186,21 +185,6 @@ void	Server::endConnection(int currentSocket) {
 	FD_CLR(currentSocket, &_masterFds);
 }
 
-void	Server::sendToEveryone(int currentSocket) {
-
-	for(int j = 0; j <= _fdMax; j++)
-	{
-		if (FD_ISSET(j, &_masterFds))
-		{
-			if (j != _listener && j != currentSocket)
-			{
-				if (send(j, _buf, _nbytes, 0) == -1)
-					perror("send");
-			}
-		}
-	}
-}
-
 void	Server::createChannel(std::string name)
 {
 	_channels[name] = Channel(name);
@@ -217,6 +201,7 @@ void	Server::launchServer(char* port, char* password) {
 	while (1)
 	{
 		_readFds = _masterFds; // copy the master to manipulate
+		_writeFds = _readFds;
 		runSelect(); // runs select(2)
 		for (_currentClient = 0; _currentClient <= _fdMax; _currentClient++)
 		{
@@ -231,11 +216,7 @@ void	Server::launchServer(char* port, char* password) {
 					if (_nbytes < 1)
 						endConnection(_currentClient);
 					else
-					{
-
 						_users[_currentClient].handleCommand(_buf);
-						// sendToEveryone(_currentClient);
-					}
 				}
 			}
 		}

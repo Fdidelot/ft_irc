@@ -48,7 +48,8 @@ SRCS =		main.cpp							\
 			cmdOper.cpp							\
 			cmdMotd.cpp							\
 			cmdList.cpp							\
-			cmdKill.cpp
+			cmdKill.cpp             \
+			cmdKick.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -71,12 +72,11 @@ OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.cpp=.o))
 #-----------------------------------------------#
 ################### FLAGS #######################
 #-----------------------------------------------#
-CXXFLAGS =	-Wall -Wextra -Werror				\
-			-std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 ifeq ($(d), 0)
-	CXXFLAGS	+= -Wpadded
-	CXXFLAGS	+= -g3
-	CXXFLAGS	+= -fsanitize=address,undefined
+CXXFLAGS	+= -g3
+CXXFLAGS	+= -Wpadded
+CXXFLAGS	+= -fsanitize=address,undefined
 endif
 ifeq ($(d), 1)
 	CXXFLAGS	+= -g

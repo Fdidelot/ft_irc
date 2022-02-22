@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:25:17 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/18 12:36:14 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:13:21 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	Command::_privmsg(std::stringstream& completeCommand, User& user){
 		if (chan_ptr == NULL)
 			sendCommand(user, ERRCODE_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN(target));
 		else
-			chan_ptr->sendToChannel(completeCommand.str() + "\r\n", *this);
+			chan_ptr->sendToChannel(":" + user.getNick() + " " + completeCommand.str() + "\r\n", *this, user.getFd());
 	}
 	else
 	{
@@ -34,6 +34,6 @@ void	Command::_privmsg(std::stringstream& completeCommand, User& user){
 		if (user_ptr == NULL)
 			sendCommand(user, ERRCODE_NOSUCHNICK, ERR_NOSUCHNICK(target));
 		else
-			sendCommand(*user_ptr, PONG, completeCommand.str() + "\r\n");
+			sendDirect(*user_ptr, PONG, ":" + user.getNick() + " " + completeCommand.str() + "\r\n");
 	}
 }
