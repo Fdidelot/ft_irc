@@ -14,7 +14,7 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 18 //add if command
+# define NB_COMMAND 19 //add if command
 # define EOT_CODE 4
 # define SEND_OPT 0
 
@@ -330,6 +330,7 @@ class Command
 		void		_kick(std::stringstream& completeCommand, User& user);
 		void		_notice(std::stringstream& completeCommand, User& user);
 		void		_topic(std::stringstream& completeCommand, User& user);
+		void		_invite(std::stringstream& completeCommand, User& user);
 };
 
 #endif

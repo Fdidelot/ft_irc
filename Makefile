@@ -6,7 +6,7 @@
 #    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/22 15:57:47 by psemsari         ###   ########.fr        #
+#    Updated: 2022/02/23 11:12:53 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRCS =		main.cpp							\
 			cmdList.cpp							\
 			cmdKill.cpp							\
 			cmdKick.cpp							\
-			cmdNotice.cpp
+			cmdNotice.cpp						\
+			cmdTopic.cpp
 
 vpath %.cpp $(PATH_SRCS)
 

@@ -6,13 +6,13 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/21 16:01:12 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:56:58 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Channel.hpp"
 
-Channel::Channel(std::string name) : _name(name)
+Channel::Channel(std::string name) : _name(name), mode_k(0)
 {
 }
 
@@ -33,6 +33,11 @@ void Channel::setName(std::string name)
 void Channel::addToChannel(User *user)
 {
 	_users.push_back(user);
+}
+
+void Channel::addToChannel(User *user)
+{
+	_invite.push_back(user);
 }
 
 void Channel::removeFromChannel(User *user)

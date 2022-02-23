@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:05:02 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/22 18:08:30 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:54:10 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,25 @@ class Channel
 		{
 			return (_users);
 		}
+		std::string getTopic()
+		{
+			return (_topic);
+		}
 		void setName(std::string name);
 		void addToChannel(User *user);
+		void addToInvite(User *user);
 		void addOpToChannel(User *user);
 		void removeFromChannel(User *user);
 		void sendToChannel(std::string str, Command &command, int notsend);
 
 	private:
+		int	mode_k;
 		std::string _name;
 		std::string _topic;
+		std::string _pass;
 		users_list	_users;
 		users_list	_opers;
+		users_list	_invite;
 };
 
 #endif
