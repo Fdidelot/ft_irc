@@ -304,6 +304,8 @@ class Command
 		Command(std::string commandName = "Unknown");
 		~Command(void);
 
+		void    listUsersFromChannel(User usr, std::map<int, User> users, std::string chan);
+		void    showAllUsers(User usr, std::map<int, User> users);
 		void	launchCommand(std::stringstream& completeCommand, User& user);
 		void	sendCommand(User& user, int msgId, std::string toSend) const;
 		void	sendDirect(User& user, int msgId, std::string toSend) const;
@@ -328,6 +330,8 @@ class Command
 		void		_motd(std::stringstream& completeCommand, User& user);
 		void		_kill(std::stringstream& completeCommand, User& user);
 		void		_kick(std::stringstream& completeCommand, User& user);
+		void		_who(std::stringstream& completeCommand, User& user);
+		void		_whois(std::stringstream& completeCommand, User& user);
 
 };
 
