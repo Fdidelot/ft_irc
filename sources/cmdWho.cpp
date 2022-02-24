@@ -21,8 +21,68 @@ bool     findCommonChannel(User u1, User u2)
     return (true);
 }
 
+User    *findByNickName(User& user, std::string name)
+{
+    std::map<int, User> tmp = user.getServer().getUsers();
+    std::map<int, User>::iterator it = tmp.begin();
+    std::map<int, User>::iterator ite = tmp.end();
+    while (it != ite)
+    {
+        if (it->second.getNick() == name)
+            return (&(it->second));
+        it++;
+    }
+    return NULL;
+}
+
+User    *findByHost(User& user, std::string name)
+{
+    std::map<int, User> tmp = user.getServer().getUsers();
+    std::map<int, User>::iterator it = tmp.begin();
+    std::map<int, User>::iterator ite = tmp.end();
+    while (it != ite)
+    {
+        if (it->second.getHost() == name)
+            return (&(it->second));
+        it++;
+    }
+    return NULL;
+}
+
+User    *findByRealName(User& user, std::string name)
+{
+    std::map<int, User> tmp = user.getServer().getUsers();
+    std::map<int, User>::iterator it = tmp.begin();
+    std::map<int, User>::iterator ite = tmp.end();
+    while (it != ite)
+    {
+        if (it->second.getRealName() == name)
+            return (&(it->second));
+        it++;
+    }
+    return NULL;
+}
+
+std::string findByChannel(User *u, std::string mask)
+{
+    std::list<Channel *>::iterator it1 = u.getChannel().begin();
+    std::list<Channel *>::iterator ite1 = u.getChannel().end();
+    std::string ret;
+    ret.clear();
+
+    while (it != ite)
+    {
+        if (it->getName() == mask)
+            return (it->getName);
+        it++;
+    }
+    return (ret);
+}
+
 void	Command::_who(std::stringstream& completeCommand, User& user) {
 
+
+    //ADD gestion du 'o'
 	std::string mask;
     std::strnig tmp;
     
@@ -33,6 +93,7 @@ void	Command::_who(std::stringstream& completeCommand, User& user) {
         std::map<int, User> tmp = user.getServer().getUsers();
         std::map<int, User>::iterator it = tmp.begin();
         std::map<int, User>::iterator ite = tmp.end();
+        //SEND CMD RPL_START
         while (it != ite)
         {
             if (it->second.getMode('i') == false)
@@ -40,7 +101,19 @@ void	Command::_who(std::stringstream& completeCommand, User& user) {
                     printUserDatas(it->second);
             it++
         }
-    
+        //SEND CMD RPL_START
     }
-
+    else
+    {
+        //SEND CMD RPL_START
+        if (findByChannel(&user, mask) == true) 
+            sendCommand(user, PONG, get...());
+        if (findByNickname(&user, mask) == true)
+            sendCommand(user, PONG, get...());
+        if (findByHost(&user, mask) == true)
+            sendCommand(user, PONG, get...());
+        if (findByRealName(&user, mask) == true)
+            sendCommand(user, PONG, get...());
+        //SEND CMD RPL_START
+    }
 }
