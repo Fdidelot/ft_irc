@@ -35,6 +35,7 @@ void	Command::_whois(std::stringstream& completeCommand, User& user) {
         completeCommand >> comma;
         if (comma.empty())
             return;
+        completeCommand >> mask;
     }
 
 }
