@@ -117,6 +117,15 @@ void    Command::listUsersFromChannel(User usr, std::map<int, User> users, std::
     }
 }
 
+bool    Command::findNicknameOccurences(User *user, std::map<int, User>, bool oper)
+{
+    int i;
+    std::map<int, User>::iterator it = users.begin();
+    std::map<int, User>::iterator ite = users.end();
+    if (o == false || usr->getMode('o') == true)
+        sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(createUserDataBuff(findByNickname(user, mask))));
+} // CA MARCHE PAS
+
 //ADD gestion du 'o'
 void	Command::_who(std::stringstream& completeCommand, User& user) {
 
@@ -134,19 +143,23 @@ void	Command::_who(std::stringstream& completeCommand, User& user) {
         {
             if (it->second.getMode('i') == false)
                 if (findCommonChannel(user, it->second) == true)
-                sendCommand(user, RPLCODE_WHOREPLY, RPL_WHOREPLY(createUserDataBuff(&(it->second))));
+                    if (o == false || it->second.getMode('o') == true)
+                        sendCommand(user, RPLCODE_WHOREPLY, RPL_WHOREPLY(createUserDataBuff(&(it->second))));
             it++;
         }
         sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(user.getNick()));
     }
     else
     {
+        User *usr;
         if (findByChannel(&user, mask).empty() == false)
             listUsersFromChannel(user, user.getServer().getUsers(), mask);
-        else if (findByNickname(user, mask) != NULL)
-            sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(createUserDataBuff(findByNickname(user, mask))));
-        else if (findByUsername(user, mask) != NULL)
-            sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(createUserDataBuff(findByUsername(user, mask))));
+        else if ((findNicknameOccurences(user, mask)) == true);
+        else if (findByUsername(user, mask)== NULL)
+        {
+            if (o == false || usr->getMode('o') == true)
+                sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(createUserDataBuff(usr)));
+        }
         else if (mask == SERV_NAME)
             showAllUsers(user, user.getServer().getUsers());
         sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(user.getNick()));
