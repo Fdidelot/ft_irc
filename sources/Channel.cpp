@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/25 12:47:05 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/27 18:05:11 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ void Channel::setModeK(bool mode)
 void Channel::addToChannel(User *user)
 {
 	_users.push_back(user);
+}
+
+bool Channel::addToChannel(User *user, std::string pass = "")
+{
+	if (_mode_k == true && _pass != pass)
+		return (1);
+	_users.push_back(user);
+	return (0);
 }
 
 void Channel::removeFromChannel(User *user)
