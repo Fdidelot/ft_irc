@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+         #
+#    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
 #    Updated: 2022/02/27 16:31:59 by bemoreau         ###   ########.fr        #
@@ -48,10 +48,13 @@ SRCS =		main.cpp							\
 			cmdOper.cpp							\
 			cmdMotd.cpp							\
 			cmdList.cpp							\
-			cmdKill.cpp             			\
+			cmdKill.cpp             \
 			cmdKick.cpp							\
 			cmdWho.cpp							\
-			cmdWhois.cpp
+			cmdWhois.cpp            \
+			cmdNotice.cpp						\
+			cmdTopic.cpp						\
+			cmdInvite.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -106,7 +109,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS) $(CXXFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS) $(CXXFLAGS) -g3
 
 $(PATH_OBJS)%.o: %.cpp
 	$(CXX) -o $@ -c $< $(CXXFLAGS) $(CPPFLAGS)

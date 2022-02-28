@@ -92,7 +92,9 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_kill,
 		&Command::_kick,
 		&Command::_who,
-		&Command::_whois
+		&Command::_whois,
+		&Command::_topic,
+		&Command::_invite
 	};
 	std::string commandId[NB_COMMAND] = {
 		"PASS",
@@ -111,7 +113,9 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"kill",
 		"KICK",
 		"WHO",
-		"WHOIS"
+		"WHOIS",
+		"TOPIC",
+		"INVITE"
 	};
 
 	int	i;
