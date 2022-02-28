@@ -14,7 +14,7 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 16 //add if command
+# define NB_COMMAND 19 //add if command
 # define EOT_CODE 4
 
 // Error codes
@@ -327,7 +327,9 @@ class Command
 		void		_motd(std::stringstream& completeCommand, User& user);
 		void		_kill(std::stringstream& completeCommand, User& user);
 		void		_kick(std::stringstream& completeCommand, User& user);
-
+		void		_notice(std::stringstream& completeCommand, User& user);
+		void		_topic(std::stringstream& completeCommand, User& user);
+		void		_invite(std::stringstream& completeCommand, User& user);
 };
 
 #endif

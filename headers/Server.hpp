@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/27 18:18:58 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:23 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,7 @@ class Server {
 		void	endConnection(int currentSocket);
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
-		void	sendCommand(int fd, std::string message)
-		{
-			if (FD_ISSET(fd, &_writeFds))
-				send(fd, message.c_str(), message.size(), SEND_OPT);
-			else
-				endConnection(fd);
-		}
+		void	sendCommand(int fd, std::string message);
 
 		User*	getUser(std::string name);
 		std::map<int, User> getUsers(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:55 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/18 19:46:40 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:27:03 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 # define USER_HPP
 
 # include <iostream>
-
+// :lol!~u@h2cbwfux4ju5g.oragono JOIN #test
+// :testnet.ergo.chat 353 lol = #test :トヨタ lol kylef Palaver
+// :testnet.ergo.chat 366 lol #test :End of NAMES list
 # include "Server.hpp"
 # include "Channel.hpp"
 # include "Command.hpp"
 # include <list>
 
-# define DEFAULT_NICKNAME " * "
+# define DEFAULT_NICKNAME "*"
 
 class Server;
 
