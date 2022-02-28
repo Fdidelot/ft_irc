@@ -129,7 +129,6 @@ bool    Command::findNicknameOccurence(User& user, std::map<int, User> users, bo
 	return false;
 }
 
-//ADD gestion du 'o'
 void	Command::_who(std::stringstream& completeCommand, User& user) {
 
 	std::string mask;

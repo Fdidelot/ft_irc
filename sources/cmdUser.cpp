@@ -71,6 +71,7 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 	{
 		realname += buf;
 		realname += ' ';
+		buf.clear();
 		completeCommand >> buf;	
 	}
 	if (realname.empty() == false)
