@@ -12,6 +12,7 @@
 
 #include "Command.hpp"
 
+
 void	Command::_nick(std::stringstream& completeCommand, User& user) {
 
 	std::string nickname;

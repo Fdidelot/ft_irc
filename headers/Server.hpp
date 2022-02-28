@@ -80,6 +80,8 @@ class Server {
 		Server(void);
 		~Server(void);
 
+		User    *findByNickName(User& user, std::string name);
+		bool	isNicknameKilled(std::string name);
 		void	launchServer(char* port, char* password);
 		void	initHints(void);
 		void	initAi(char* port);
