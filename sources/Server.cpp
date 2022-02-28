@@ -215,6 +215,7 @@ void	Server::endConnection(int currentSocket) {
 		std::cout << "ircserv: socket " << currentSocket << " hung up" << std::endl;
 	else
 		perror("recv");
+	std::cout << "Delete: " << _users[currentSocket].getNick() << std::endl;
 	_users.erase(currentSocket);
 	close(currentSocket);
 	FD_CLR(currentSocket, &_masterFds);
