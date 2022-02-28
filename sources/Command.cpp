@@ -57,7 +57,6 @@ void	Command::sendDirect(User& user, int msgId, std::string toSend) const {
 	if (msgId != PONG)
 	{
 		numberStream << std::setw(3) << std::setfill('0') << msgId;
-		std::cout << "|" << user.getNick() << "|" << std::endl;
 		toSend.insert(0, RPL_MESSAGE(servName, numberStream.str(), user.getNick()));
 	}
 	user.getServer().sendCommand(user.getFd(), toSend);

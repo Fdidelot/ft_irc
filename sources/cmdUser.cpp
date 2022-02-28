@@ -77,8 +77,8 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 	}
 	if (realname.empty() == false)
 	{
-		// if (realname[0] == ':')
-		// 	realname.erase(0, 1);
+		if (realname[0] == ':')
+			realname.erase(0, 1);
 		user.setRealname(realname);
 	}
 	else

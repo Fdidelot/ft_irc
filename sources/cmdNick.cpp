@@ -20,7 +20,6 @@ void	Command::_nick(std::stringstream& completeCommand, User& user) {
 	if (user.getPassGiven() == false)
 		user.setIsEnded(true);
 	completeCommand >> nickname;
-	std::cout << "|" << nickname << "|" << std::endl;
 	if (nickname == user.getNick())
 		return;
 	if (user.getServer().isNicknameKilled(nickname)== true)
