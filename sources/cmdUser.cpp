@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cmdUser.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:25:56 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/18 19:47:15 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/02/28 02:48:29 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-User    *findByUsername(User& user, std::string name)
+static User    *findUserByUsername(User& user, std::string name)
 {
     std::map<int, User> tmp = user.getServer().getUsers();
     std::map<int, User>::iterator it = tmp.begin();
@@ -43,7 +43,7 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 		sendStartMsgs(user);
 	if (username.empty() == false)
 	{
-		if (findByUsername == NULL)
+		if (findUserByUsername(user, username) == NULL)
 			user.setUsername(username);
 		else
 		{
@@ -57,17 +57,15 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 	}
 	if (mode.empty() == false)
 	{
-		if (mode == "8" != std::string::npos)
+		if (mode == "8")
 			user.setMode(true, "i");
 	}
 	else{
 		sendDirect(user, ERRCODE_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(cmd));
 		return ;
 	}
-	std::string realname;
+
 	std::string buf;
-
-
 	completeCommand >> buf;
 	while (buf.empty() == false)
 	{
@@ -77,8 +75,8 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 	}
 	if (realname.empty() == false)
 	{
-		if (realname[0] == ':');
-		realname.erase(0, 1);
+		if (realname[0] == ':')
+			realname.erase(0, 1);
 		user.setRealname(realname);
 	}
 	else{

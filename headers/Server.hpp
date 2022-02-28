@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/22 13:48:10 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/27 16:28:28 by bemoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define FAILURE_LISTEN 3
 # define FAILURE_SELECT 4
 # define ERROR -1
+# define SEND_OPT 0
 # define BACKLOG 10   // how many pending connections queue will hold
 
 # include "Command.hpp"
