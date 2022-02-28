@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/27 18:05:11 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:22:55 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,18 @@ void Channel::sendToChannel(std::string str, Command &command, int notsend)
 void Channel::addOpToChannel(User *user)
 {
 	_opers.push_back(user);
+}
+
+std::string Channel::usersFormat()
+{
+	Channel::users_list::iterator it = _users.begin();
+	Channel::users_list::iterator ite = _users.end();
+	std::string ret;
+	ret += (*it)->getNick();
+	it++;
+	for (;it != ite; it++)
+	{
+		ret += " " + (*it)->getNick();
+	}
+	return ret;
 }

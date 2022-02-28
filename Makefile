@@ -6,7 +6,7 @@
 #    By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/02/28 11:34:59 by psemsari         ###   ########.fr        #
+#    Updated: 2022/02/28 15:17:01 by psemsari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.cpp=.o))
 #-----------------------------------------------#
 ################### FLAGS #######################
 #-----------------------------------------------#
-CXXFLAGS =	-g3 -Wall -Wextra -Werror -std=c++98
+CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 ifeq ($(d), 0)
 CXXFLAGS	+= -g3
 CXXFLAGS	+= -Wpadded

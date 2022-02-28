@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:23:09 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/28 13:32:54 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:21:38 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 void	Command::_join(std::stringstream& completeCommand, User& user) {
 
-	std::list<std::string> toJoin;
-	std::list<std::string> pass;
+	std::list<std::string> toJoin, pass;
 	std::stringstream stream;
-	std::string str;
-	std::string word;
+	std::string str, word;
 
 	completeCommand >> str;
 	stream.str(str);
@@ -51,7 +49,10 @@ void	Command::_join(std::stringstream& completeCommand, User& user) {
 		{
 			user.addChannel(channel);
 			channel->addToChannel(&user);
-			channel->sendToChannel("JOIN " + toJoin.front() + "\r\n", *this, 0);
+			channel->sendToChannel(":" + user.getNick() +" JOIN " + toJoin.front() + "\r\n", *this, user.getFd());
+			sendCommand(user, PONG, ":" + user.getNick() +" JOIN " + toJoin.front() + "\r\n");
+			sendCommand(user, RPLCODE_NAMREPLY, "= " + RPL_NAMREPLY(toJoin.front(), channel->usersFormat()));
+			sendCommand(user, RPLCODE_ENDOFNAMES, RPL_ENDOFNAMES(toJoin.front()));
 		}
 		else
 			sendCommand(user, ERRCODE_BADCHANNELKEY, ERR_BADCHANNELKEY(toJoin.front()));

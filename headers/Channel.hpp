@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:05:02 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/26 18:30:28 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:35:10 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ class Channel
 		void addOpToChannel(User *user);
 		void removeFromChannel(User *user);
 		void sendToChannel(std::string str, Command &command, int notsend);
+		std::string usersFormat();
 
 	private:
 		bool		_mode_i;

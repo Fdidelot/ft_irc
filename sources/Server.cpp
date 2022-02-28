@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/22 15:14:38 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:18 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,4 +222,12 @@ void	Server::launchServer(char* port, char* password) {
 			}
 		}
 	}
+}
+
+void	Server::sendCommand(int fd, std::string message)
+{
+	if (FD_ISSET(fd, &_writeFds))
+		send(fd, message.c_str(), message.size(), SEND_OPT);
+	else
+		endConnection(fd);
 }
