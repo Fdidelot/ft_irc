@@ -91,6 +91,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_list,
 		&Command::_kill,
 		&Command::_kick,
+		&Command::_who,
+		&Command::_whois,
 		&Command::_topic,
 		&Command::_invite
 	};
@@ -110,6 +112,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"LIST",
 		"kill",
 		"KICK",
+		"WHO",
+		"WHOIS",
 		"TOPIC",
 		"INVITE"
 	};

@@ -56,6 +56,7 @@
 # define FAILURE_LISTEN 3
 # define FAILURE_SELECT 4
 # define ERROR -1
+# define SEND_OPT 0
 # define BACKLOG 10   // how many pending connections queue will hold
 # define SEND_OPT 0
 

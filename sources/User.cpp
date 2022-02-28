@@ -20,6 +20,7 @@ User::User(void) :	_userOrNickCmd(false),
 					_commandBuf(""),
 					_fd(-1),
 					_nick(DEFAULT_NICKNAME),
+					_realname(DEFAULT_NICKNAME),
 					_server(NULL),
 					_errModeChar('i'),
 					_isEnded(false),
@@ -40,6 +41,7 @@ User::User(int fd, Server* server) :	_userOrNickCmd(false),
 										_commandBuf(""),
 										_fd(fd),
 										_nick(DEFAULT_NICKNAME),
+										_realname(DEFAULT_NICKNAME),
 										_server(server),
 										_errModeChar('i'),
 										_isEnded(false),
@@ -87,6 +89,16 @@ int		User::getFd(void) const {
 std::string User::getNick(void) const {
 
 	return (_nick);
+}
+
+std::string User::getRealname(void) const {
+
+	return (_realname);
+}
+
+std::string User::getUsername(void) const {
+
+	return (_username);
 }
 
 bool	User::getUserOrNickCmd(void) const {
@@ -165,6 +177,11 @@ Channel*	User::getChannel(std::string name)
 	return (NULL);
 }
 
+User::channels_list	User::getChannelList() const
+{
+	return (_channels_list);
+}
+
 bool	User::getIsEnded(void) const {
 
 	return (_isEnded);
@@ -198,6 +215,16 @@ void	User::setPassGiven(bool b) {
 void	User::setNickname(std::string nickname) {
 
 	_nick = nickname;
+}
+
+void	User::setRealname(std::string realname) {
+
+	_realname = realname;
+}
+
+void	User::setUsername(std::string username) {
+
+	_username = username;
 }
 
 void	User::setUserOrNickCmd(bool b) {
