@@ -3,10 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/21 21:16:47 by bemoreau         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:18 by psemsari         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "Server.hpp"
@@ -166,9 +167,9 @@ void	Server::runSelect(void) {
 
 	struct timeval timeout;
 
-	timeout.tv_sec = 1;
+	timeout.tv_sec = 0;
 	timeout.tv_usec = 0;
-	if (select(_fdMax + 1, &_readFds, &_writeFds, NULL, &timeout) == -1) {
+	if (select(_fdMax + 1, &_readFds, &_writeFds, NULL, NULL) == -1) {
 		perror("select");
 		exit(FAILURE_SELECT);
 	}
@@ -255,4 +256,12 @@ void	Server::launchServer(char* port, char* password) {
 			}
 		}
 	}
+}
+
+void	Server::sendCommand(int fd, std::string message)
+{
+	if (FD_ISSET(fd, &_writeFds))
+		send(fd, message.c_str(), message.size(), SEND_OPT);
+	else
+		endConnection(fd);
 }

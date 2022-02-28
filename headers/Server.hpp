@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/22 13:48:10 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:53:23 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define FAILURE_LISTEN 3
 # define FAILURE_SELECT 4
 # define ERROR -1
+# define SEND_OPT 0
 # define BACKLOG 10   // how many pending connections queue will hold
 # define SEND_OPT 0
 
@@ -89,15 +90,7 @@ class Server {
 		void	endConnection(int currentSocket);
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
-		void	sendCommand(int fd, std::string message)
-		{
-			if (FD_ISSET(fd, &_writeFds))
-				send(fd, message.c_str(), message.size(), SEND_OPT);
-			else
-				endConnection(fd);
-		}
-		bool	isNicknameKilled(std::string name);
-		User    *findByNickName(User& user, std::string name);
+		void	sendCommand(int fd, std::string message);
 		User*	getUser(std::string name);
 		std::map<int, User> getUsers(void);
 		Channel*	getChannel(std::string name);

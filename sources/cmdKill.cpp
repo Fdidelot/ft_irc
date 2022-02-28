@@ -11,12 +11,12 @@ void	Command::_kill(std::stringstream& completeCommand, User& user)
     completeCommand >> message;
     if (user.getMode('o') == false)
     {
-        sendCommand(user, 481, ERR_NOPRIVILEGES());
+        sendCommand(user, ERRCODE_NOPRIVILEGES, ERR_NOPRIVILEGES());
         return ;
     }
     if (nick.empty() == true || message.empty())
     {
-        sendCommand(user, 461, ERR_NEEDMOREPARAMS(cmd));
+        sendCommand(user, ERRCODE_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(cmd));
         return ;
     }
     if (nick == SERV_NAME)

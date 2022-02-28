@@ -5,7 +5,7 @@ Command: PART ✔️ segfault quand il y a plus qu'une personne
     Parameters: <channel> *( "," <channel> ) [ <Part Message> ]
 Command: MODE ✔️ (k et i minimum)
     Parameters: <channel> *( ( "-" / "+" ) *<modes> *<modeparams> )
-Command: TOPIC
+Command: TOPIC ✔️
     Parameters: <channel> [ <topic> ]
 Command: NAMES ✔️
     Parameters: [ <channel> *( "," <channel> ) [ <target> ] ]
@@ -48,3 +48,7 @@ Command: KILL ✔️
 Command: ERROR
    Parameters: <error message>
 ???
+
+signal handling
+voir commande pour fd ouvert
+leaks

@@ -21,14 +21,12 @@ void	Command::_pass(std::stringstream& completeCommand, User& user) {
 		std::string pass;
 		std::string cmd = "PASS";
 		completeCommand >> pass;
-		std::cout << "Password is :" << pass << std::endl;
 		if (pass.empty())
 		{
 			sendCommand(user, 461, ERR_NEEDMOREPARAMS(cmd));
 		}
 		if (pass != user.getServer().getPassword())
 			user.setIsEnded(true);
-			//user.getServer().endConnection(user.getFd());
 	}
 	else
 	{

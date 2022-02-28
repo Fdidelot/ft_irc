@@ -14,9 +14,8 @@
 # define COMMAND_HPP
 
 # include "User.hpp"
-# define NB_COMMAND 16 //add if command
+# define NB_COMMAND 21 //add if command
 # define EOT_CODE 4
-# define SEND_OPT 0
 
 // Error codes
 # define ERRCODE_NOSUCHNICK			401
@@ -304,6 +303,11 @@ class Command
 		Command(std::string commandName = "Unknown");
 		~Command(void);
 
+		void    printUserData(User& user, User& target);
+		bool	findByUsername(User& user, std::string name, bool oper);
+		void    listUsersFromChannel(User usr, std::map<int, User> users, std::string chan);
+		bool	findNicknameOccurence(User& user, std::map<int, User> users, bool oper, std::string mask);
+		void    showAllUsers(User usr, std::map<int, User> users);
 		void	launchCommand(std::stringstream& completeCommand, User& user);
 		void	sendCommand(User& user, int msgId, std::string toSend) const;
 		void	sendDirect(User& user, int msgId, std::string toSend) const;
@@ -328,7 +332,11 @@ class Command
 		void		_motd(std::stringstream& completeCommand, User& user);
 		void		_kill(std::stringstream& completeCommand, User& user);
 		void		_kick(std::stringstream& completeCommand, User& user);
-
+		void		_who(std::stringstream& completeCommand, User& user);
+		void		_whois(std::stringstream& completeCommand, User& user);
+		void		_notice(std::stringstream& completeCommand, User& user);
+		void		_topic(std::stringstream& completeCommand, User& user);
+		void		_invite(std::stringstream& completeCommand, User& user);
 };
 
 #endif
