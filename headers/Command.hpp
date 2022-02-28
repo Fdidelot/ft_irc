@@ -304,7 +304,7 @@ class Command
 		Command(std::string commandName = "Unknown");
 		~Command(void);
 
-		void    printUserData(User& user, User& target);
+		void    printUserData(User& user, User *target);
 		bool	findByUsername(User& user, std::string name, bool oper);
 		void    listUsersFromChannel(User usr, std::map<int, User> users, std::string chan);
 		bool	findNicknameOccurence(User& user, std::map<int, User> users, bool oper, std::string mask);

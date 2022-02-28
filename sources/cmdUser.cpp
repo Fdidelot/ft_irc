@@ -73,7 +73,6 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 	while (buf.empty() == false)
 	{
 		realname += buf;
-		std::cout << "Realname: " << realname << std::endl;
 		realname += ' ';
 		buf.clear();
 		completeCommand >> buf;	
@@ -86,7 +85,6 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 	}
 	else
 	{
-		user.setRealname("Default");
 		sendDirect(user, ERRCODE_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(cmd));
 		return ;
 	}
