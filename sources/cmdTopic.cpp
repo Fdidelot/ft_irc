@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 18:13:28 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/25 12:47:42 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:55:46 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	Command::_topic(std::stringstream& completeCommand, User& user){
 		sendCommand(user, ERRCODE_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS(std::string("TOPIC")));
 	else if (user.getChannel(target) == NULL)
 		sendCommand(user, ERRCODE_NOTONCHANNEL, ERR_NOTONCHANNEL(target));
-	else if (user.getChannel(target) && topic.empty())
+	else if (user.getChannel(target) && !topic.empty())
 	{
+		user.getChannel(target)->setTopic(topic);
 		sendCommand(user, PONG, completeCommand.str() + "\r\n");
 		user.getChannel(target)->sendToChannel(completeCommand.str() + "\r\n", *this, user.getFd());
 	}

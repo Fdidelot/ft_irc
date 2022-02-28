@@ -6,7 +6,7 @@
 /*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/28 15:22:55 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:53:59 by psemsari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ bool Channel::getModeK()
 }
 
 //set
+void Channel::setTopic(std::string topic)
+{
+	_topic = topic;
+}
 
 void Channel::setName(std::string name)
 {
