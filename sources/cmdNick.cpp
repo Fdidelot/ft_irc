@@ -28,7 +28,7 @@ void	Command::_nick(std::stringstream& completeCommand, User& user) {
 		user.getServer().endConnection(user.getFd());
 		return ;
 	}
-	if (user.getServer().findByNickName(user, nickname) != NULL)
+	if (user.getServer().findByNickName(user, nickname) != NULL)// && (nickname != user.getNick()))
 	{
 		sendDirect(user, 433, ERR_NICKNAMEINUSE(nickname));
 		return ;
