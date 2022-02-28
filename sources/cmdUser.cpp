@@ -12,20 +12,6 @@
 
 #include "Command.hpp"
 
-static User    *findUserByUsername(User& user, std::string name)
-{
-    std::map<int, User> tmp = user.getServer().getUsers();
-    std::map<int, User>::iterator it = tmp.begin();
-    std::map<int, User>::iterator ite = tmp.end();
-    while (it != ite)
-    {
-        if (it->second.getUsername() == name)
-            return (&(it->second));
-        it++;
-    }
-    return NULL;
-}
-
 void	Command::_user(std::stringstream& completeCommand, User& user) {
 
 	std::string username;
@@ -43,12 +29,11 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 		sendStartMsgs(user);
 	if (username.empty() == false)
 	{
-		if (findUserByUsername(user, username) == NULL)
+		if (user.getUsername().empty() == true)
 			user.setUsername(username);
 		else
 		{
-			sendDirect(user, ERRCODE_ALREADYREGISTRED, ERR_ALREADYREGISTRED());
-			return ;
+		 	sendDirect(user, ERRCODE_ALREADYREGISTRED, ERR_ALREADYREGISTRED());
 		}
 	}
 	else{
