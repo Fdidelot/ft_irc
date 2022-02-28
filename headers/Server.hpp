@@ -17,6 +17,7 @@
 # include <sys/socket.h> // getaddrinfo
 # include <netdb.h> // getaddrinfo
 
+# include <algorithm>
 # include <stdexcept> // exception
 # include <iostream> // cerr,cout,endl
 # include <cstdlib> // exit
@@ -26,6 +27,7 @@
 # include <sstream> // flefleche
 # include <map> // map
 # include <ctime> // time()
+
 
 // getaddrinfo, bind, select, accept
 # include <stdlib.h>
@@ -89,11 +91,12 @@ class Server {
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
 		void	sendCommand(int fd, std::string message);
-
 		User*	getUser(std::string name);
 		std::map<int, User> getUsers(void);
 		Channel*	getChannel(std::string name);
 		std::string		getPassword();
+		std::vector<std::string>	getUnavalaibleNames();
+		void	setUnavalaibleName(std::string name);
 
 		int		getCurrentClient(void) const;
 		Channel_map& getChannelMap(void)
@@ -129,7 +132,7 @@ class Server {
 		int					_fdMax;				// maximum file descriptor number
 		int					_nbytes;			// number of bytes read
 		std::string			_password; 			// password defined by the server
-		std::vector<std::string> unavalaibleNames; // list of Unavalaible names (KILLed ones)
+		std::vector<std::string> _unavalaibleNames; // list of Unavalaible names (KILLed ones)
 		char				_buf[256];			// buffer for client data
 		int					_currentClient; 	// store the current client fd
 		std::map<int, User>	_users; 			// list of users associate with fd

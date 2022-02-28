@@ -19,6 +19,19 @@ void	Command::_nick(std::stringstream& completeCommand, User& user) {
 	if (user.getPassGiven() == false)
 		user.setIsEnded(true);
 	completeCommand >> nickname;
+	std::cout << "|" << nickname << "|" << std::endl;
+	if (nickname == user.getNick())
+		return;
+	if (user.getServer().isNicknameKilled(nickname)== true)
+	{
+		user.getServer().endConnection(user.getFd());
+		return ;
+	}
+	if (user.getServer().findByNickName(user, nickname) != NULL)
+	{
+		sendDirect(user, 433, ERR_NICKNAMEINUSE(nickname));
+		return ;
+	}
 	user.setNickname(nickname);
 	if (user.getUserOrNickCmd())
 		sendStartMsgs(user);
