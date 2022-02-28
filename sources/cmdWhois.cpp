@@ -21,6 +21,7 @@ void    Command::printUserData(User& user, User& target)
     std::string host = SERV_NAME;
     std::string realname = target.getRealname();
 
+    std::cout << "Realname: " << realname << std::endl;
     sendCommand(user, RPLCODE_WHOISUSER, RPL_WHOISUSER(nick, username, host, realname));
     
     std::list<Channel *> tmp =  target.getChannelList();
@@ -28,7 +29,7 @@ void    Command::printUserData(User& user, User& target)
     std::list<Channel *>::iterator ite = tmp.end();
     while (it != ite)
     {
-        sendCommand(user, RPLCODE_WHOISCHANNELS, RPL_WHOISCHANNELS((*it)->getName(), "")); // A remplacer par le topic du chann
+        sendCommand(user, RPLCODE_WHOISCHANNELS, RPL_WHOISCHANNELS((*it)->getName(), (*it)->getTopic())); // A remplacer par le topic du chann
         it++;
     }
     if (target.getMode('o') == true)

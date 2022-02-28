@@ -188,6 +188,7 @@ bool	User::getIsEnded(void) const {
 }
 
 /*						Setters								*/
+
 int		User::setOperator(std::string name, std::string pass)
 {
 	if (name == OPERNAME && pass == OPERPASS)
