@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:24:04 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/18 19:47:25 by mvidal-a         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:55:04 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,12 @@ void	Command::_nick(std::stringstream& completeCommand, User& user) {
 		return ;
 	}
 	user.setNickname(nickname);
-	if (user.getUserOrNickCmd())
+	if (user.getUserOrNickCmd() && !user.getStartMsg())
+	{
 		sendStartMsgs(user);
+		user.setStartMsg(true);
+	}
+	else if (user.getStartMsg())
+		sendDirect(user, PONG, NICK_MSG(nickname, user.getUsername()));
 	user.setUserOrNickCmd(true);
 }

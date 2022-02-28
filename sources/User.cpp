@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/22 13:50:23 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:49:24 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ User::User(void) :	_userOrNickCmd(false),
 					_server(NULL),
 					_errModeChar('i'),
 					_isEnded(false),
-					_passGiven(false) {
+					_passGiven(false),
+					_startMsg(false) {
 
 	_mode.a = false;
 	_mode.i = false;
@@ -45,7 +46,8 @@ User::User(int fd, Server* server) :	_userOrNickCmd(false),
 										_server(server),
 										_errModeChar('i'),
 										_isEnded(false),
-										_passGiven(false) {
+										_passGiven(false),
+										_startMsg(false) {
 
 
 	_mode.a = false;
@@ -187,6 +189,11 @@ bool	User::getIsEnded(void) const {
 	return (_isEnded);
 }
 
+bool	User::getStartMsg(void) const {
+
+	return (_startMsg);
+}
+
 /*						Setters								*/
 
 int		User::setOperator(std::string name, std::string pass)
@@ -241,6 +248,11 @@ void	User::setErrModeChar(char c) {
 void	User::setIsEnded(bool b) {
 
 	_isEnded = b;
+}
+
+void	User::setStartMsg(bool b) {
+
+	_startMsg = b;
 }
 
 void	User::setMode(bool onOff, const char* modes) {

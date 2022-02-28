@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   User.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:55 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/28 15:27:03 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:22:41 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ class User
 		channels_list	getChannelList(void) const;
 		bool		getIsEnded(void) const;
 		bool		getPassGiven(void) const;
+		bool		getStartMsg(void) const;
 
 		int		setOperator(std::string name, std::string pass);
 		void	setCommandEnd(bool b);
@@ -77,6 +78,7 @@ class User
 		void	setErrModeChar(char c);
 		void	setIsEnded(bool b);
 		void	setPassGiven(bool b);
+		void	setStartMsg(bool b);
 
 		void	addChannel(Channel* channel);
 		void	removeChannel(std::string name)
@@ -103,6 +105,7 @@ class User
 		channels_list	_channels_list;
 		bool			_isEnded;
 		bool			_passGiven;
+		bool			_startMsg;
 
 };
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdUser.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bemoreau <bemoreau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:25:56 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/28 02:48:29 by bemoreau         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:25:51 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ void	Command::_user(std::stringstream& completeCommand, User& user) {
 
 	if (user.getPassGiven() == false)
 		user.setIsEnded(true);
-	if (user.getUserOrNickCmd())
+	if (user.getUserOrNickCmd() && !user.getStartMsg())
+	{
 		sendStartMsgs(user);
+		user.setStartMsg(true);
+	}
 	if (username.empty() == false)
 	{
 		if (findUserByUsername(user, username) == NULL)
