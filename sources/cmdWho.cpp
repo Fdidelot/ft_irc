@@ -60,7 +60,7 @@ bool Command::findByUsername(User& user, std::string name, bool oper)
 	while (it != ite)
 	{
 		if (it->second.getUsername() == name)
-			if (oper == false || it->second.getMode('o') == true)
+			if ((oper == false || it->second.getMode('o') == true) && user.getMode('i') == false)
 			{
 				sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(createUserDataBuff(&(it->second))));
 				ret = true;
@@ -88,26 +88,27 @@ std::string findByChannel(User *u1, std::string mask)
 	return (ret);
 }
 
-void    Command::showAllUsers(User usr, std::map<int, User> users)
+void    Command::showAllUsers(User usr, std::map<int, User> users, bool oper)
 {
 	std::map<int, User>::iterator it = users.begin();
 	std::map<int, User>::iterator ite = users.end();
 
 	while (it != ite)
 	{
-		sendCommand(usr, RPLCODE_WHOREPLY, RPL_WHOREPLY(createUserDataBuff(&(it->second))));
+		if ((oper == false || it->second.getMode('o') == true) && it->second.getMode('i') == false)
+			sendCommand(usr, RPLCODE_WHOREPLY, RPL_WHOREPLY(createUserDataBuff(&(it->second))));
 		it++;
 	}
 }
 
-void    Command::listUsersFromChannel(User usr, std::map<int, User> users, std::string chann)
+void    Command::listUsersFromChannel(User usr, std::map<int, User> users, std::string chann, bool oper)
 {
 	std::map<int, User>::iterator it = users.begin();
 	std::map<int, User>::iterator ite = users.end();
 
 	while (it != ite)
 	{
-		if ((findByChannel(&(it->second), chann).empty() == false))
+		if ((findByChannel(&(it->second), chann).empty() == false) && (oper == false || it->second.getMode('o') == true) && it->second.getMode('i') == false)
 			sendCommand(usr, RPLCODE_WHOREPLY, RPL_WHOREPLY(createUserDataBuff(&(it->second))));
 		it++;
 	}
@@ -120,7 +121,7 @@ bool    Command::findNicknameOccurence(User& user, std::map<int, User> users, bo
 	while (it != ite)
 	{
 		if (it->second.getNick() == mask)
-			if (oper == false || user.getMode('o') == true)
+			if ((oper == false || user.getMode('o') == true) && user.getMode('i') == false)
 			{
 				sendCommand(user, RPLCODE_WHOREPLY, RPL_WHOREPLY(createUserDataBuff(findByNickname(&user, mask))));
 				return true;
@@ -154,11 +155,11 @@ void	Command::_who(std::stringstream& completeCommand, User& user) {
 	else
 	{
 		if (findByChannel(&user, mask).empty() == false)
-			listUsersFromChannel(user, user.getServer().getUsers(), mask);
+			listUsersFromChannel(user, user.getServer().getUsers(), mask, o);
 		else if ((findNicknameOccurence(user, user.getServer().getUsers(), o, mask)) == true);
 		else if ((findByUsername(user, mask, o)) == true);
 		else if (mask == SERV_NAME)
-			showAllUsers(user, user.getServer().getUsers());
+			showAllUsers(user, user.getServer().getUsers(), o);
 		sendCommand(user, RPLCODE_ENDOFWHO, RPL_ENDOFWHO(user.getNick()));
 	}
 }
