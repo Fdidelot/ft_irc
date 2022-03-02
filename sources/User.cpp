@@ -298,6 +298,7 @@ void	User::setMode(bool onOff, const char* modes) {
 /************************************************************/
 /*					Member functions						*/
 /************************************************************/
+
 bool	User::addToBuf(void) {
 
 	size_t	endLine;
@@ -310,6 +311,17 @@ bool	User::addToBuf(void) {
 		_totalBuf.erase(0, endLine + 2);
 		_commandEnd = true;
 		return (SUCCESS_ADD);
+	}
+	else
+	{
+		endLine = _totalBuf.find("\n", 0);
+		if ((endLine != std::string::npos))
+		{
+			_commandBuf = _totalBuf.substr(0, endLine);
+			_totalBuf.erase(0, endLine + 2);
+			_commandEnd = true;
+			return (SUCCESS_ADD);
+		}
 	}
 	return (FAILURE_ADD);
 }
