@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Server.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/28 14:53:18 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:04:50 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,10 @@ void	Server::launchServer(char* port, char* password) {
 					bzero(&_buf, sizeof(_buf));
 					_nbytes = recv(_currentClient, _buf, sizeof(_buf), 0);
 					if (_nbytes < 1)
+					{
+						std::cout << "mais pas la" << std::endl;
 						endConnection(_currentClient);
+					}
 					else
 						_users[_currentClient].handleCommand(_buf);
 				}
