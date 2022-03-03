@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdNotice.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:56:08 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/23 11:12:29 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/03/03 21:12:07 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void	Command::_notice(std::stringstream& completeCommand, User& user){
 	std::cout << completeCommand.str() << std::endl;
 	if (target[0] == '#')
 	{
-		Channel* chan_ptr = user.getChannel(target);
+		Channel* chan_ptr = user.getServer().getChannel(target);
+		std::cout << "ptr = " << chan_ptr << std::endl;
 		if (chan_ptr != NULL)
-			chan_ptr->sendToChannel(":" + user.getNick() + " " + completeCommand.str() + "\r\n", *this, user.getFd());
+			chan_ptr->sendToChannel(":" + user.getNickHost() + " " + completeCommand.str() + "\r\n", *this, user.getFd());
 	}
 	else
 	{
 		std::cout << completeCommand.str() << std::endl;
 		if (user_ptr != NULL)
-			sendDirect(*user_ptr, PONG, ":" + user.getNick() + " " + completeCommand.str() + "\r\n");
+			sendDirect(*user_ptr, PONG, ":" + user.getNickHost() + " " + completeCommand.str() + "\r\n");
 	}
 }

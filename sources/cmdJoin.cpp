@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:23:09 by psemsari          #+#    #+#             */
-/*   Updated: 2022/03/03 15:55:52 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/03 19:31:49 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	Command::_join(std::stringstream& completeCommand, User& user) {
 			channel = user.getServer().getChannel(toJoin.front());
 			channel->setName(toJoin.front());
 		}
-		if (pass.empty() || !channel->addToChannel(&user, pass.front()))//revoir
+		if (pass.empty() || !channel->addToChannel(&user, pass.front()))
 		{
 			user.addChannel(channel);
 			channel->addToChannel(&user);

@@ -337,7 +337,6 @@ class Command
 		void		_whois(std::stringstream& completeCommand, User& user);
 		void		_notice(std::stringstream& completeCommand, User& user);
 		void		_topic(std::stringstream& completeCommand, User& user);
-		void		_invite(std::stringstream& completeCommand, User& user);
 };
 
 #endif

@@ -6,7 +6,7 @@
 #    By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/03/03 18:00:37 by fdidelot         ###   ########.fr        #
+#    Updated: 2022/03/03 20:46:28 by fdidelot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,13 +48,12 @@ SRCS =		main.cpp							\
 			cmdOper.cpp							\
 			cmdMotd.cpp							\
 			cmdList.cpp							\
-			cmdKill.cpp             \
+			cmdKill.cpp							\
 			cmdKick.cpp							\
 			cmdWho.cpp							\
-			cmdWhois.cpp            \
+			cmdWhois.cpp						\
 			cmdNotice.cpp						\
-			cmdTopic.cpp						\
-			cmdInvite.cpp
+			cmdTopic.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -79,8 +78,8 @@ OBJS = $(addprefix $(PATH_OBJS), $(SRCS:.cpp=.o))
 #-----------------------------------------------#
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 ifeq ($(d), 0)
-	CXXFLAGS	+= -g3
-	CXXFLAGS	+= -Wpadded
+#	CXXFLAGS	+= -g3
+#	CXXFLAGS	+= -Wpadded
 	CXXFLAGS	+= -fsanitize=address,undefined
 endif
 ifeq ($(d), 1)
@@ -109,7 +108,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS) $(CXXFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 
 $(PATH_OBJS)%.o: %.cpp
 	$(CXX) -o $@ -c $< $(CXXFLAGS) $(CPPFLAGS)
