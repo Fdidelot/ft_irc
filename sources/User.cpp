@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/28 19:04:13 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/03 18:43:38 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,11 @@ int		User::getFd(void) const {
 std::string User::getNick(void) const {
 
 	return (_nick);
+}
+
+std::string User::getNickHost(void) const {
+
+	return (_nick + "!~u@localhost");
 }
 
 std::string User::getRealname(void) const {

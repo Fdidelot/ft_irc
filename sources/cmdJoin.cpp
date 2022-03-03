@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdJoin.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:23:09 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/28 15:21:38 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:55:52 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	Command::_join(std::stringstream& completeCommand, User& user) {
 		{
 			user.addChannel(channel);
 			channel->addToChannel(&user);
-			channel->sendToChannel(":" + user.getNick() +" JOIN " + toJoin.front() + "\r\n", *this, user.getFd());
-			sendCommand(user, PONG, ":" + user.getNick() +" JOIN " + toJoin.front() + "\r\n");
+			channel->sendToChannel(":" + user.getNickHost() +" JOIN " + toJoin.front() + "\r\n", *this, user.getFd());
+			sendCommand(user, PONG, ":" + user.getNickHost() +" JOIN " + toJoin.front() + "\r\n");
 			sendCommand(user, RPLCODE_NAMREPLY, "= " + RPL_NAMREPLY(toJoin.front(), channel->usersFormat()));
 			sendCommand(user, RPLCODE_ENDOFNAMES, RPL_ENDOFNAMES(toJoin.front()));
 		}

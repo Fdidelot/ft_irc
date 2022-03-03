@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:55 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/28 16:22:41 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:55:23 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ class User
 		bool		getCommandEnd(void) const;
 		int			getFd(void) const;
 		std::string	getNick(void) const;
+		std::string	getNickHost(void) const;
 		std::string	getRealname(void) const;
 		std::string	getUsername(void) const;
 		std::string	getCommandBuf(void) const;

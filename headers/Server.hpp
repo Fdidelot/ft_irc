@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/02/28 14:53:23 by psemsari         ###   ########.fr       */
+/*   Updated: 2022/03/03 18:36:42 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sstream> // flefleche
 # include <map> // map
 # include <ctime> // time()
+# include <signal.h> // signal()
 
 
 // getaddrinfo, bind, select, accept
