@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/03 18:50:47 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 16:53:34 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /************************************************************/
 /*					Constructor/Destructor					*/
 /************************************************************/
-Server::Server(void) {
+Server::Server(void) : _ai(NULL) {
 
 	FD_ZERO(&_masterFds);
 	FD_ZERO(&_readFds);
@@ -33,8 +33,8 @@ Server::~Server(void) {
 /************************************************************/
 /*						Getters								*/
 
-std::map<int, User> Server::getUsers(void)
-{
+std::map<int, User>& Server::getUsers(void) {
+
 	return (_users);
 }
 
@@ -43,8 +43,8 @@ int	Server::getCurrentClient(void) const {
 	return (_currentClient);
 }
 
-User*	Server::getUser(std::string name)
-{
+User*	Server::getUser(std::string name) {
+
 	std::map<int, User>::iterator it = _users.begin();
 	std::map<int, User>::iterator ite = _users.end();
 
@@ -56,28 +56,38 @@ User*	Server::getUser(std::string name)
 	return (NULL);
 }
 
-Channel*	Server::getChannel(std::string name)
-{
+Channel*	Server::getChannel(std::string name) {
+
 	Channel_map_it it = _channels.find(name);
 	if (it == _channels.end())
 		return (NULL);
 	return (&it->second);
 }
 
-std::string Server::getPassword(){
+std::string Server::getPassword(void) const {
 
 	return (this->_password);
 }
 
-std::vector<std::string> Server::getUnavalaibleNames()
-{
+std::vector<std::string> Server::getUnavalaibleNames(void) const {
+
 	return (this->_unavalaibleNames);
+}
+
+Server::Channel_map& 	Server::getChannelMap(void) {
+
+	return (_channels);
+}
+
+struct addrinfo*	Server::getAi(void) const {
+
+	return (_ai);
 }
 
 /*						Setters								*/
 
-void Server::setUnavalaibleName(std::string name)
-{
+void Server::setUnavalaibleName(std::string name) {
+
 	if (std::find(_unavalaibleNames.begin(), _unavalaibleNames.end(), name) != _unavalaibleNames.end())
 		return ;
 	_unavalaibleNames.push_back(name);
@@ -221,10 +231,16 @@ void	Server::endConnection(int currentSocket) {
 	FD_CLR(currentSocket, &_masterFds);
 }
 
-void	Server::createChannel(std::string name)
-{
+void	Server::createChannel(std::string name) {
+
 	_channels[name] = Channel(name);
 }
+
+void	Server::eraseChannel(std::string name) {
+
+	_channels.erase(name);
+}
+
 
 void	Server::launchServer(char* port, char* password) {
 

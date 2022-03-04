@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/03 18:36:42 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 16:48:17 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,20 @@ class Server {
 		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
 		void	sendCommand(int fd, std::string message);
-		User*	getUser(std::string name);
-		std::map<int, User> getUsers(void);
-		Channel*	getChannel(std::string name);
-		std::string		getPassword();
-		std::vector<std::string>	getUnavalaibleNames();
+
+		User*						getUser(std::string name);
+		std::map<int, User>&		getUsers(void);
+		Channel*					getChannel(std::string name);
+		std::string					getPassword(void) const;
+		std::vector<std::string>	getUnavalaibleNames(void) const;
+		int							getCurrentClient(void) const;
+		struct addrinfo*			getAi(void) const;
+		Channel_map& 				getChannelMap(void);
+
 		void	setUnavalaibleName(std::string name);
 
-		int		getCurrentClient(void) const;
-		Channel_map& getChannelMap(void)
-		{
-			return (_channels);
-		}
-
 		void	createChannel(std::string name);
-		void	eraseChannel(std::string name)
-		{
-			_channels.erase(name);
-		}
+		void	eraseChannel(std::string name);
 
 		class badArgumentsCountException : public std::exception {
 

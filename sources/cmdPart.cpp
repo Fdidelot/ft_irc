@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:35:31 by psemsari          #+#    #+#             */
-/*   Updated: 2022/03/03 20:19:32 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:04:11 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	Command::_part(std::stringstream& completeCommand, User& user)
 
 	completeCommand >> str;
 	stream.str(str);
-	while (!stream.eof()) {
+	while (!stream.eof())
+	{
 		std::getline(stream, word, ',');
 		toPart.push_back(word);
 	}
