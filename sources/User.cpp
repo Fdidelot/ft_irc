@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:44 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/03 20:25:20 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:30:08 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		User::getFd(void) const {
 	return (_fd);
 }
 
-std::string User::getNick(void) const {
+std::string& User::getNick(void) {
 
 	return (_nick);
 }
@@ -342,7 +342,7 @@ void	User::execCommand(std::string commandLine) {
 	std::stringstream	lineStream(commandLine);
 
 	lineStream >> commandName;
-	std::cout << "lS = " << lineStream.str() << std::endl << "commandName = " << commandName << std::endl;;
+	// std::cout << "lS = " << lineStream.str() << std::endl << "commandName = " << commandName << std::endl;;
 
 	Command currentCommand(commandName);
 
@@ -374,7 +374,7 @@ void	User::handleCommand(char* buffer) {
 	}
 }
 
-void	User::addChannel(Channel* channel)
-{
+void	User::addChannel(Channel* channel) {
+
 	_channels_list.push_back(channel);
 }

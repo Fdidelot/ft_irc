@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:58:08 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/04 16:48:17 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:33:48 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@
 //
 
 # define SERV_NAME "Cthulhu"
-# define SERV_VERSION "0.1"
+# define SERV_VERSION "1.0"
 # define CREATION_DATE "Today"
 
-# define MOTD "Welcome to our ft_irc server !"
+# define MOTD "Welcome, we have been expecting you !"
 
-# define OPERNAME "ircserver"
-# define OPERPASS "karmineCorp"
+# define OPERNAME "Cthulhu"
+# define OPERPASS "Sesame"
 
 # define SUCCESS 0
 # define SUCCESS_ADD 1
@@ -91,18 +91,19 @@ class Server {
 		void	runSelect(void);
 		void	newConnection(void);
 		void	endConnection(int currentSocket);
-		void*	getInAddr(struct sockaddr* sa);
 		void	execCommand(std::string commandLine);
 		void	sendCommand(int fd, std::string message);
 
+		void*						getInAddr(struct sockaddr* sa);
 		User*						getUser(std::string name);
 		std::map<int, User>&		getUsers(void);
 		Channel*					getChannel(std::string name);
 		std::string					getPassword(void) const;
-		std::vector<std::string>	getUnavalaibleNames(void) const;
+		std::vector<std::string>&	getUnavalaibleNames(void);
 		int							getCurrentClient(void) const;
 		struct addrinfo*			getAi(void) const;
 		Channel_map& 				getChannelMap(void);
+		int							getListener(void) const;
 
 		void	setUnavalaibleName(std::string name);
 
@@ -122,20 +123,20 @@ class Server {
 
 	private:
 
-		fd_set				_masterFds;			// master file descriptor list
-		fd_set				_readFds;			// temporary file descriptor list for select(2)
-		fd_set				_writeFds;			// check if i can write on fd
-		struct addrinfo		_hints; 			// hint struct for getaddrinfo to set _ai
-		struct addrinfo		*_ai;				// list of struct given by getaddrinfo use for binding
-		int					_listener;			// listening socket descriptor
-		int					_fdMax;				// maximum file descriptor number
-		int					_nbytes;			// number of bytes read
-		std::string			_password; 			// password defined by the server
-		std::vector<std::string> _unavalaibleNames; // list of Unavalaible names (KILLed ones)
-		char				_buf[256];			// buffer for client data
-		int					_currentClient; 	// store the current client fd
-		std::map<int, User>	_users; 			// list of users associate with fd
-		Channel_map			_channels;			// list of channels associate with names
+		fd_set						_masterFds;			// master file descriptor list
+		fd_set						_readFds;			// temporary file descriptor list for select(2)
+		fd_set						_writeFds;			// check if i can write on fd
+		struct addrinfo				_hints; 			// hint struct for getaddrinfo to set _ai
+		struct addrinfo				*_ai;				// list of struct given by getaddrinfo use for binding
+		int							_listener;			// listening socket descriptor
+		int							_fdMax;				// maximum file descriptor number
+		int							_nbytes;			// number of bytes read
+		std::string					_password; 			// password defined by the server
+		std::vector<std::string>	_unavalaibleNames;	// list of Unavalaible names (KILLed ones)
+		char						_buf[256];			// buffer for client data
+		int							_currentClient; 	// store the current client fd
+		std::map<int, User>			_users; 			// list of users associate with fd
+		Channel_map					_channels;			// list of channels associate with names
 };
 
 #endif

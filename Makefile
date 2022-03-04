@@ -6,7 +6,7 @@
 #    By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/03/04 17:03:25 by fdidelot         ###   ########.fr        #
+#    Updated: 2022/03/04 21:46:22 by fdidelot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,25 +35,21 @@ SRCS =		main.cpp							\
 			Command.cpp							\
 			User.cpp							\
 			Channel.cpp							\
-			cmdPass.cpp							\
-			cmdNick.cpp							\
-			cmdCap.cpp							\
-			cmdMode.cpp							\
-			cmdJoin.cpp							\
-			cmdPing.cpp							\
-			cmdPrivmsg.cpp						\
-			cmdUser.cpp							\
-			cmdPart.cpp							\
-			cmdQuit.cpp							\
-			cmdOper.cpp							\
-			cmdMotd.cpp							\
-			cmdList.cpp							\
-			cmdKill.cpp							\
-			cmdKick.cpp							\
-			cmdWho.cpp							\
-			cmdWhois.cpp						\
-			cmdNotice.cpp						\
-			cmdTopic.cpp
+			PassCmd.cpp							\
+			NickCmd.cpp							\
+			CapCmd.cpp							\
+			ModeCmd.cpp							\
+			JoinCmd.cpp							\
+			PingCmd.cpp							\
+			PrivmsgCmd.cpp						\
+			UserCmd.cpp							\
+			PartCmd.cpp							\
+			QuitCmd.cpp							\
+			OperCmd.cpp							\
+			MotdCmd.cpp							\
+			KillCmd.cpp							\
+			WhoisCmd.cpp						\
+			NoticeCmd.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
@@ -63,7 +59,9 @@ vpath %.cpp $(PATH_SRCS)
 HEADERS		=	Server.hpp						\
 				Command.hpp						\
 				User.hpp						\
-				Channel.hpp
+				Channel.hpp						\
+				err.hpp							\
+				rpl.hpp
 
 vpath %.hpp $(PATH_HEAD)
 

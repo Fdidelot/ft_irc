@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:44:55 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/03 15:55:23 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 20:36:29 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define USER_HPP
 
 # include <iostream>
-// :lol!~u@h2cbwfux4ju5g.oragono JOIN #test
-// :testnet.ergo.chat 353 lol = #test :トヨタ lol kylef Palaver
-// :testnet.ergo.chat 366 lol #test :End of NAMES list
 # include "Server.hpp"
 # include "Channel.hpp"
 # include "Command.hpp"
@@ -51,23 +48,23 @@ class User
 		bool	addToBuf(void);
 		void	addToSend(std::string string);
 
-		bool		getCommandEnd(void) const;
-		int			getFd(void) const;
-		std::string	getNick(void) const;
-		std::string	getNickHost(void) const;
-		std::string	getRealname(void) const;
-		std::string	getUsername(void) const;
-		std::string	getCommandBuf(void) const;
-		bool		getUserOrNickCmd(void) const;
-		bool		getMode(char m) const;
-		std::string	getModes(void) const;
-		char		getErrModeChar(void) const;
-		Server&		getServer(void) const;
-		Channel*	getChannel(std::string name);
+		bool			getCommandEnd(void) const;
+		int				getFd(void) const;
+		std::string&	getNick(void);
+		std::string		getNickHost(void) const;
+		std::string		getRealname(void) const;
+		std::string		getUsername(void) const;
+		std::string		getCommandBuf(void) const;
+		bool			getUserOrNickCmd(void) const;
+		bool			getMode(char m) const;
+		std::string		getModes(void) const;
+		char			getErrModeChar(void) const;
+		Server&			getServer(void) const;
+		Channel*		getChannel(std::string name);
 		channels_list	getChannelList(void) const;
-		bool		getIsEnded(void) const;
-		bool		getPassGiven(void) const;
-		bool		getStartMsg(void) const;
+		bool			getIsEnded(void) const;
+		bool			getPassGiven(void) const;
+		bool			getStartMsg(void) const;
 
 		int		setOperator(std::string name, std::string pass);
 		void	setCommandEnd(bool b);

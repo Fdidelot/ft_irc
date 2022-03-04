@@ -39,7 +39,6 @@ void	Command::sendCommand(User& user, int msgId, std::string toSend) const {
 	std::stringstream numberStream;
 	std::string servName = static_cast<std::string>(SERV_NAME);
 
-	//ADD write rights verification
 	if (msgId != PONG)
 	{
 		numberStream << std::setw(3) << std::setfill('0') << msgId;
@@ -53,7 +52,6 @@ void	Command::sendDirect(User& user, int msgId, std::string toSend) const {
 	std::stringstream numberStream;
 	std::string servName = static_cast<std::string>(SERV_NAME);
 
-	//ADD write rights verification
 	if (msgId != PONG)
 	{
 		numberStream << std::setw(3) << std::setfill('0') << msgId;
@@ -88,12 +86,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		&Command::_quit,
 		&Command::_oper,
 		&Command::_motd,
-		&Command::_list,
 		&Command::_kill,
-		&Command::_kick,
-		&Command::_who,
 		&Command::_whois,
-		&Command::_topic,
 		&Command::_notice
 	};
 	std::string commandId[NB_COMMAND] = {
@@ -109,12 +103,8 @@ void	Command::launchCommand(std::stringstream& completeCommand, User& user) {
 		"QUIT",
 		"OPER",
 		"motd",
-		"LIST",
 		"kill",
-		"KICK",
-		"WHO",
 		"WHOIS",
-		"TOPIC",
 		"NOTICE"
 	};
 

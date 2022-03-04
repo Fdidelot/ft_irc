@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 17:24:34 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/28 19:33:46 by fdidelot         ###   ########.fr       */
+/*   Created: 2022/03/04 20:27:33 by fdidelot          #+#    #+#             */
+/*   Updated: 2022/03/04 20:27:33 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	Command::_pass(std::stringstream& completeCommand, User& user) {
 
-	std::cout << "Pass command :" << completeCommand.str() << std::endl;
 	if (!user.getUserOrNickCmd() && !user.getPassGiven())
 	{
 		std::string pass;

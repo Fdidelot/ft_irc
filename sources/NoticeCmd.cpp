@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 15:56:08 by psemsari          #+#    #+#             */
-/*   Updated: 2022/03/03 21:12:07 by fdidelot         ###   ########.fr       */
+/*   Created: 2022/03/04 20:26:37 by fdidelot          #+#    #+#             */
+/*   Updated: 2022/03/04 21:42:05 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-void	Command::_notice(std::stringstream& completeCommand, User& user){
+void	Command::_notice(std::stringstream& completeCommand, User& user) {
 
 	std::string target;
 	completeCommand >> target;

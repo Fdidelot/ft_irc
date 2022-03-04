@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmdPrivmsg.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 17:25:17 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/21 16:13:21 by psemsari         ###   ########.fr       */
+/*   Created: 2022/03/04 20:27:47 by fdidelot          #+#    #+#             */
+/*   Updated: 2022/03/04 20:27:54 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	Command::_privmsg(std::stringstream& completeCommand, User& user){
 
-	//:prefix PRIVMSG user/#target | message suitemessage
-	//send((*it)->getFd(), str.c_str(), str.size(), NULL);
 	std::string target;
 	completeCommand >> target;
-	std::cout << "OUTPUT target = " << target << std::endl;
 	if (target[0] == '#')
 	{
 		Channel* chan_ptr = user.getChannel(target);

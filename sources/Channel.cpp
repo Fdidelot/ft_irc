@@ -5,87 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 15:09:45 by psemsari          #+#    #+#             */
-/*   Updated: 2022/03/03 14:35:59 by fdidelot         ###   ########.fr       */
+/*   Created: 2022/03/04 20:25:21 by fdidelot          #+#    #+#             */
+/*   Updated: 2022/03/04 20:25:27 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Channel.hpp"
 
-Channel::Channel(std::string name) : _mode_k(false), _name(name)
-{
+Channel::Channel(std::string name) : _mode_k(false), _name(name) {
+
+	return ;
 }
 
-Channel::~Channel()
-{
+Channel::~Channel() {
+
+	return ;
 }
 
-//get
+/************************************************************/
+/*					Getters/Setters							*/
+/************************************************************/
+/*						Getters								*/
 
-std::string Channel::getName()
-{
+std::string Channel::getName() {
+
 	return (_name);
 }
 
-Channel::users_list& Channel::getList()
-{
+Channel::users_list& Channel::getList() {
+
 	return (_users);
 }
 
-std::string Channel::getTopic()
-{
+std::string Channel::getTopic() {
+
 	return (_topic);
 }
 
-bool Channel::getModeI()
-{
+bool Channel::getModeI() {
+
 	return (_mode_i);
 }
 
-bool Channel::getModeK()
-{
+bool Channel::getModeK() {
+
 	return (_mode_k);
 }
 
-//set
+/*						Setters								*/
 
-void Channel::setName(std::string name)
-{
+void Channel::setName(std::string name) {
+
 	_name = name;
 }
 
-void Channel::setModeI(bool mode)
-{
+void Channel::setModeI(bool mode) {
+
 	_mode_i = mode;
 }
 
-void Channel::setModeK(bool mode)
-{
+void Channel::setModeK(bool mode) {
+
 	_mode_k = mode;
 }
 
-//others
+/************************************************************/
+/*					Members functions						*/
+/************************************************************/
 
-void Channel::addToChannel(User *user)
-{
+void Channel::addToChannel(User *user) {
+
 	_users.push_back(user);
 }
 
-bool Channel::addToChannel(User *user, std::string pass = "")
-{
+bool Channel::addToChannel(User *user, std::string pass = "") {
+
 	if (_mode_k == true && _pass != pass)
 		return (1);
 	_users.push_back(user);
 	return (0);
 }
 
-void Channel::removeFromChannel(User *user)
-{
+void Channel::removeFromChannel(User *user) {
+
 	_users.remove(user);
 }
 
-void Channel::sendToChannel(std::string str, Command &command, int notsend)
-{
+void Channel::sendToChannel(std::string str, Command &command, int notsend) {
+
 	users_list::iterator it = _users.begin();
 	users_list::iterator ite = _users.end();
 	for (; it != ite; it++)
@@ -93,13 +100,13 @@ void Channel::sendToChannel(std::string str, Command &command, int notsend)
 			command.sendDirect(**it, PONG, str);
 }
 
-void Channel::addOpToChannel(User *user)
-{
+void Channel::addOpToChannel(User *user) {
+
 	_opers.push_back(user);
 }
 
-std::string Channel::usersFormat()
-{
+std::string Channel::usersFormat() {
+
 	Channel::users_list::iterator it = _users.begin();
 	Channel::users_list::iterator ite = _users.end();
 	std::string ret;

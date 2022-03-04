@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmdKick.cpp                                        :+:      :+:    :+:   */
+/*   cmdPing.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psemsari <psemsari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 13:00:42 by psemsari          #+#    #+#             */
-/*   Updated: 2022/02/21 13:47:30 by psemsari         ###   ########.fr       */
+/*   Created: 2022/03/04 20:27:39 by fdidelot          #+#    #+#             */
+/*   Updated: 2022/03/04 20:27:40 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-void	Command::_kick(std::stringstream& completeCommand, User& user) {
+void	Command::_ping(std::stringstream& completeCommand, User& user) {
+
+	std::string servName = static_cast<std::string>(SERV_NAME);
 
 	(void)completeCommand;
-	(void)user;
+	sendCommand(user, PONG, PONG_MSG(servName));
 }

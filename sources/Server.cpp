@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:57:10 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/04 16:53:34 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 21:43:24 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ Channel*	Server::getChannel(std::string name) {
 
 std::string Server::getPassword(void) const {
 
-	return (this->_password);
+	return (_password);
 }
 
-std::vector<std::string> Server::getUnavalaibleNames(void) const {
+std::vector<std::string>& Server::getUnavalaibleNames(void) {
 
-	return (this->_unavalaibleNames);
+	return (_unavalaibleNames);
 }
 
 Server::Channel_map& 	Server::getChannelMap(void) {
@@ -82,6 +82,11 @@ Server::Channel_map& 	Server::getChannelMap(void) {
 struct addrinfo*	Server::getAi(void) const {
 
 	return (_ai);
+}
+
+int	Server::getListener(void) const {
+
+	return (_listener);
 }
 
 /*						Setters								*/
@@ -162,6 +167,7 @@ void	Server::bindToFirst(void) {
 		exit(FAILURE_BINDING);
 	}
 	freeaddrinfo(_ai);
+	_ai = NULL;
 }
 
 void	Server::tryListen(void) {
@@ -223,9 +229,6 @@ void	Server::endConnection(int currentSocket) {
 
 	if (_nbytes == 0)
 		std::cout << "ircserv: socket " << currentSocket << " hung up" << std::endl;
-	else
-		perror("recv");
-	std::cout << "Delete: " << _users[currentSocket].getNick() << std::endl;
 	_users.erase(currentSocket);
 	close(currentSocket);
 	FD_CLR(currentSocket, &_masterFds);
@@ -266,10 +269,7 @@ void	Server::launchServer(char* port, char* password) {
 					bzero(&_buf, sizeof(_buf));
 					_nbytes = recv(_currentClient, _buf, sizeof(_buf), 0);
 					if (_nbytes < 1)
-					{
-						std::cout << "mais pas la" << std::endl;
 						endConnection(_currentClient);
-					}
 					else
 						_users[_currentClient].handleCommand(_buf);
 				}
@@ -278,8 +278,8 @@ void	Server::launchServer(char* port, char* password) {
 	}
 }
 
-void	Server::sendCommand(int fd, std::string message)
-{
+void	Server::sendCommand(int fd, std::string message) {
+
 	if (FD_ISSET(fd, &_writeFds))
 		send(fd, message.c_str(), message.size(), SEND_OPT);
 	else

@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/16 11:35:31 by psemsari          #+#    #+#             */
-/*   Updated: 2022/03/04 17:04:11 by fdidelot         ###   ########.fr       */
+/*   Created: 2022/03/04 20:27:10 by fdidelot          #+#    #+#             */
+/*   Updated: 2022/03/04 21:42:16 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Command.hpp"
 
-void	Command::_part(std::stringstream& completeCommand, User& user)
-{
-	std::list<std::string> toPart;
-	std::stringstream stream;
-	std::string word, str;
-	Channel *channeltofind;
+void	Command::_part(std::stringstream& completeCommand, User& user) {
+
+	std::list<std::string>	toPart;
+	std::stringstream		stream;
+	std::string				word, str;
+	Channel					*channeltofind;
 
 	completeCommand >> str;
 	stream.str(str);
