@@ -6,7 +6,7 @@
 /*   By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:53:47 by fdidelot          #+#    #+#             */
-/*   Updated: 2022/03/04 21:42:55 by fdidelot         ###   ########.fr       */
+/*   Updated: 2022/03/04 21:49:55 by fdidelot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Server* g_serv;
 
 //	affichage dans Server et dans user.cpp execcommand
-//	changer nom des fichiers, mettre dans un dossier
+//	mettre dans un dossier
 //	channel operations
 //	verifier les .hpp pour mettre en ordre
 
