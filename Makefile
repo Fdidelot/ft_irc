@@ -6,7 +6,7 @@
 #    By: fdidelot <fdidelot@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/26 21:56:29 by fdidelot          #+#    #+#              #
-#    Updated: 2022/03/04 21:46:22 by fdidelot         ###   ########.fr        #
+#    Updated: 2022/03/07 15:19:53 by fdidelot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ CXX = clang++
 ################### PATHS #######################
 #-----------------------------------------------#
 PATH_HEAD	=	./headers/
-PATH_SRCS	=	./sources/
+PATH_SRCS	=	./sources/						\
+				./sources/commands/				\
+				./sources/classes/
 PATH_OBJS	=	./objects/
 
 #-----------------------------------------------#
@@ -49,7 +51,12 @@ SRCS =		main.cpp							\
 			MotdCmd.cpp							\
 			KillCmd.cpp							\
 			WhoisCmd.cpp						\
-			NoticeCmd.cpp
+			NoticeCmd.cpp						\
+			TopicCmd.cpp						\
+			NamesCmd.cpp						\
+			ListCmd.cpp							\
+			InviteCmd.cpp						\
+			KickCmd.cpp
 
 vpath %.cpp $(PATH_SRCS)
 
